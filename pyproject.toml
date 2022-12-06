@@ -1,0 +1,24 @@
+[project]
+name = "automatedmetrics"
+version = "0.0.1"
+authors = [
+  { name="Connor Davenport", email="connor.davenport92@gmail.com" },
+]
+description = "Custom Tkinter for work item tracking"
+readme = "README.md"
+dependencies = [
+    'pillow >= 9.3',
+    'customtkinter >= 5',
+    'seaborn >= 0.12',
+    'matplotlib >= 3.6',
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/sampleproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
