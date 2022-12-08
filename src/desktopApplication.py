@@ -57,7 +57,7 @@ class desktopApplication:
     def __Gather_And_Remove_Config(self):
         try:
             self.workitemAdapter = WorkitemAdapter(self.externalWorkitemInterface, self.usernameEntry.get(), self.passwordEntry.get(), self.organizationEntry.get(), self.projectEntry.get() if self.projectEntry else None)
-            testPass = self.workitemAdapter.test()
+            testPass = self.workitemAdapter.connection_test()
             self.graphGenerator = GraphGenerator(self.workitemAdapter)
         except Exception as e:
             testPass = False

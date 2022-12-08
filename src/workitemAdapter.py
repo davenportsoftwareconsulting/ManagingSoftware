@@ -47,7 +47,7 @@ class WorkitemAdapter:
             for fieldEntry in self.__genericRequest(f"{self.baseURL}/latest/field"):
                 self.fieldList.append(fieldEntry['key'])
 
-    def test(self):
+    def connection_test(self):
         testResponse = self.__genericRequest(self.testURL)
         if testResponse:
             print("pass")
@@ -74,11 +74,11 @@ class WorkitemAdapter:
             if i != 2:
                 time.sleep(5 + (5 * i))
 
-        if goodValue:
-            return r.json()
-        else:
+        if not goodValue:
             return None
 
+        return r.json()
+        
     def __genericPostRequest(self, url: str, jsonData):
         goodValue = False
         for i in range(0, 3):
@@ -95,11 +95,11 @@ class WorkitemAdapter:
             if i != 2:
                 time.sleep(5 + (5 * i))
 
-        if goodValue:
-            return r.json()
-        else:
+        if not goodValue:
             return None
 
+        return r.json()
+        
     def Str_To_Datetime(self, dateString: str) -> datetime:
         inputFormat = "%Y-%m-%d %H:%M:%S"
         dateString = dateString.replace('T', ' ')
