@@ -1,0 +1,22 @@
+[
+    {
+    "expand": "description,lead,issueTypes,url,projectKeys,permissions,insight",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/project/10000",
+    "id": "10000",
+    "key": "SAN",
+    "name": "Sandbox",
+    "avatarUrls": {
+    "48x48": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410",
+    "24x24": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=small",
+    "16x16": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=xsmall",
+    "32x32": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=medium"
+    },
+    "projectTypeKey": "software",
+    "simplified": true,
+    "style": "next-gen",
+    "isPrivate": false,
+    "properties": { },
+    "entityId": "2993b48c-f448-4860-815f-04af8e8a9909",
+    "uuid": "2993b48c-f448-4860-815f-04af8e8a9909"
+    }
+    ]

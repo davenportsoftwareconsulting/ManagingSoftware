@@ -1,5 +1,4 @@
 from enum import Enum
-import os
 import requests
 import time
 from datetime import datetime, timedelta
@@ -18,14 +17,14 @@ class TimeGranularity(Enum):
     YEAR = 0
 
 class WorkitemAdapter:
-
+    fieldList = []
+    
     def __init__(self, connectionType: ExternalWorkitemInterface, username: str, password: str, organization: str, project: str = None) -> None:
         self.connectionType = connectionType
         self.username = username
         self.password = password
         self.organization = organization
         self.project = project
-        self.fieldList = []
 
         if self.connectionType == ExternalWorkitemInterface.ADO:
             self.baseURL = f"https://dev.azure.com/{organization}/{project}/_apis"
@@ -79,6 +78,10 @@ class WorkitemAdapter:
 
         return r.json()
         
+    def __jql_search_request(self, searchString: str):
+        url = f"{self.baseURL}/2/search?jql={searchString}"
+        return self.__genericRequest(url)
+
     def __genericPostRequest(self, url: str, jsonData):
         goodValue = False
         for i in range(0, 3):
@@ -180,7 +183,7 @@ class WorkitemAdapter:
             if 'parent' in workitemResponse['fields']:
                 returnAssociations['Parent'] = workitemResponse['fields']['parent']['key']
 
-            jqlChildrenSearchResponse = self.__genericRequest(f"{self.baseURL}/2/search?jql=%22Parent%22=%22{workitemID}%22")
+            jqlChildrenSearchResponse = self.__jql_search_request(f"%22Parent%22=%22{workitemID}%22")
             for child in jqlChildrenSearchResponse['issues']:
                 returnAssociations['Children'].append(child['key'])
 

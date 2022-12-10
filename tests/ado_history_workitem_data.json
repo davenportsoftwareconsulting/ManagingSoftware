@@ -1,0 +1,348 @@
+{
+    "count": 5,
+    "value": [
+    {
+    "id": 1,
+    "workItemId": 1,
+    "rev": 1,
+    "revisedBy": {
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "name": "Connor Davenport <connor.davenport92@gmail.com>",
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "revisedDate": "2022-11-26T18:59:11.033Z",
+    "fields": {
+    "System.Id": {
+    "newValue": 1
+    },
+    "System.AreaId": {
+    "newValue": 2
+    },
+    "System.NodeName": {
+    "newValue": "Davenport software consulting"
+    },
+    "System.AreaLevel1": {
+    "newValue": "Davenport software consulting"
+    },
+    "System.Rev": {
+    "newValue": 1
+    },
+    "System.AuthorizedDate": {
+    "newValue": "2022-11-26T18:50:59.667Z"
+    },
+    "System.RevisedDate": {
+    "newValue": "2022-11-26T18:59:11.033Z"
+    },
+    "System.IterationId": {
+    "newValue": 2
+    },
+    "System.IterationLevel1": {
+    "newValue": "Davenport software consulting"
+    },
+    "System.WorkItemType": {
+    "newValue": "Epic"
+    },
+    "System.State": {
+    "newValue": "To Do"
+    },
+    "System.Reason": {
+    "newValue": "Added to backlog"
+    },
+    "System.AssignedTo": { },
+    "System.CreatedDate": {
+    "newValue": "2022-11-26T18:50:59.667Z"
+    },
+    "System.CreatedBy": {
+    "newValue": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "System.ChangedDate": {
+    "newValue": "2022-11-26T18:50:59.667Z"
+    },
+    "System.ChangedBy": {
+    "newValue": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "System.AuthorizedAs": {
+    "newValue": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "System.PersonId": {
+    "newValue": 277984888
+    },
+    "System.Watermark": {
+    "newValue": 1
+    },
+    "System.IsDeleted": {
+    "newValue": false
+    },
+    "System.CommentCount": {
+    "newValue": 0
+    },
+    "System.TeamProject": {
+    "newValue": "Davenport software consulting"
+    },
+    "System.AreaPath": {
+    "newValue": "Davenport software consulting"
+    },
+    "System.IterationPath": {
+    "newValue": "Davenport software consulting"
+    },
+    "System.Title": {
+    "newValue": "Automated Tracker"
+    },
+    "Microsoft.VSTS.Common.Priority": {
+    "newValue": 2
+    },
+    "System.Description": {
+    "newValue": "<div>Through working with different companies, there seems to be a need of aggregating employee and larger work item progress. </div><div><br> </div><div>This interface should be able to connect to all common work item tracking and SVC interfaces. </div>"
+    },
+    "Microsoft.VSTS.Common.StateChangeDate": {
+    "newValue": "2022-11-26T18:50:59.667Z"
+    }
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/updates/1"
+    },
+    {
+    "id": 2,
+    "workItemId": 1,
+    "rev": 2,
+    "revisedBy": {
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "name": "Connor Davenport <connor.davenport92@gmail.com>",
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "revisedDate": "2022-11-26T18:59:22.66Z",
+    "fields": {
+    "System.Rev": {
+    "oldValue": 1,
+    "newValue": 2
+    },
+    "System.AuthorizedDate": {
+    "oldValue": "2022-11-26T18:50:59.667Z",
+    "newValue": "2022-11-26T18:59:11.033Z"
+    },
+    "System.RevisedDate": {
+    "oldValue": "2022-11-26T18:59:11.033Z",
+    "newValue": "2022-11-26T18:59:22.66Z"
+    },
+    "System.State": {
+    "oldValue": "To Do",
+    "newValue": "New"
+    },
+    "System.ChangedDate": {
+    "oldValue": "2022-11-26T18:50:59.667Z",
+    "newValue": "2022-11-26T18:59:11.033Z"
+    },
+    "System.Watermark": {
+    "oldValue": 1,
+    "newValue": 2
+    },
+    "Microsoft.VSTS.Common.StateChangeDate": {
+    "oldValue": "2022-11-26T18:50:59.667Z",
+    "newValue": "2022-11-26T18:59:11.033Z"
+    },
+    "Microsoft.VSTS.Common.ValueArea": {
+    "newValue": "Business"
+    }
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/updates/2"
+    },
+    {
+    "id": 3,
+    "workItemId": 1,
+    "rev": 3,
+    "revisedBy": {
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "name": "Connor Davenport <connor.davenport92@gmail.com>",
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "revisedDate": "2022-11-27T05:40:33.47Z",
+    "fields": {
+    "System.Rev": {
+    "oldValue": 2,
+    "newValue": 3
+    },
+    "System.AuthorizedDate": {
+    "oldValue": "2022-11-26T18:59:11.033Z",
+    "newValue": "2022-11-26T18:59:22.66Z"
+    },
+    "System.RevisedDate": {
+    "oldValue": "2022-11-26T18:59:22.66Z",
+    "newValue": "2022-11-27T05:40:33.47Z"
+    },
+    "System.IterationId": {
+    "oldValue": 2,
+    "newValue": 3
+    },
+    "System.IterationLevel2": {
+    "newValue": "Sprint 1"
+    },
+    "System.ChangedDate": {
+    "oldValue": "2022-11-26T18:59:11.033Z",
+    "newValue": "2022-11-26T18:59:22.66Z"
+    },
+    "System.Watermark": {
+    "oldValue": 2,
+    "newValue": 3
+    },
+    "System.IterationPath": {
+    "oldValue": "Davenport software consulting",
+    "newValue": "Davenport software consulting\\Sprint 1"
+    }
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/updates/3"
+    },
+    {
+    "id": 4,
+    "workItemId": 1,
+    "rev": 3,
+    "revisedBy": {
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "name": "Connor Davenport <connor.davenport92@gmail.com>",
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "revisedDate": "2022-11-26T19:02:44.033Z",
+    "relations": {
+    "added": [
+    {
+    "rel": "System.LinkTypes.Hierarchy-Forward",
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/2",
+    "attributes": {
+    "isLocked": false,
+    "name": "Child"
+    }
+    }
+    ]
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/updates/4"
+    },
+    {
+    "id": 5,
+    "workItemId": 1,
+    "rev": 4,
+    "revisedBy": {
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "name": "Connor Davenport <connor.davenport92@gmail.com>",
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "revisedDate": "9999-01-01T00:00:00Z",
+    "fields": {
+    "System.Rev": {
+    "oldValue": 3,
+    "newValue": 4
+    },
+    "System.AuthorizedDate": {
+    "oldValue": "2022-11-26T18:59:22.66Z",
+    "newValue": "2022-11-27T05:40:33.47Z"
+    },
+    "System.RevisedDate": {
+    "oldValue": "2022-11-27T05:40:33.47Z",
+    "newValue": "9999-01-01T00:00:00Z"
+    },
+    "System.AssignedTo": {
+    "newValue": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "System.ChangedDate": {
+    "oldValue": "2022-11-26T18:59:22.66Z",
+    "newValue": "2022-11-27T05:40:33.47Z"
+    },
+    "System.Watermark": {
+    "oldValue": 3,
+    "newValue": 8
+    }
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/updates/5"
+    }
+    ]
+    }

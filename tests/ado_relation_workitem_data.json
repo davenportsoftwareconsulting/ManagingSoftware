@@ -1,0 +1,93 @@
+{
+    "id": 1,
+    "rev": 4,
+    "fields": {
+    "System.AreaPath": "Davenport software consulting",
+    "System.TeamProject": "Davenport software consulting",
+    "System.IterationPath": "Davenport software consulting\\Sprint 1",
+    "System.WorkItemType": "Epic",
+    "System.State": "New",
+    "System.Reason": "Added to backlog",
+    "System.AssignedTo": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "System.CreatedDate": "2022-11-26T18:50:59.667Z",
+    "System.CreatedBy": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "System.ChangedDate": "2022-11-27T05:40:33.47Z",
+    "System.ChangedBy": {
+    "displayName": "Connor Davenport",
+    "url": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "_links": {
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "id": "3eff13a5-bd3d-6d52-9795-c3189918e559",
+    "uniqueName": "connor.davenport92@gmail.com",
+    "imageUrl": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "System.CommentCount": 0,
+    "System.Title": "Automated Tracker",
+    "Microsoft.VSTS.Common.StateChangeDate": "2022-11-26T18:59:11.033Z",
+    "Microsoft.VSTS.Common.Priority": 2,
+    "Microsoft.VSTS.Common.ValueArea": "Business",
+    "System.Description": "<div>Through working with different companies, there seems to be a need of aggregating employee and larger work item progress. </div><div><br> </div><div>This interface should be able to connect to all common work item tracking and SVC interfaces. </div>"
+    },
+    "relations": [
+    {
+    "rel": "System.LinkTypes.Hierarchy-Forward",
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/2",
+    "attributes": {
+    "isLocked": false,
+    "name": "Child"
+    }
+    }
+    ],
+    "_links": {
+    "self": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1"
+    },
+    "workItemUpdates": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/updates"
+    },
+    "workItemRevisions": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/revisions"
+    },
+    "workItemComments": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1/comments"
+    },
+    "html": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_workitems/edit/1"
+    },
+    "workItemType": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItemTypes/Epic"
+    },
+    "fields": {
+    "href": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/fields"
+    }
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/wit/workItems/1"
+    }

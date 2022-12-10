@@ -1,0 +1,568 @@
+{
+    "expand": "schema,names",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 2,
+    "issues": [
+    {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+    "id": "10002",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/latest/issue/10002",
+    "key": "SAN-3",
+    "fields": {
+    "statuscategorychangedate": "2022-12-06T09:50:41.163-0600",
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10005",
+    "id": "10005",
+    "description": "Between an Epic and Story",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+    "name": "Feature",
+    "subtask": false,
+    "avatarId": 10315,
+    "entityId": "dc9a98b0-4eeb-40f5-9e5d-d618dc6a37a1",
+    "hierarchyLevel": 0
+    },
+    "parent": {
+    "id": "10000",
+    "key": "SAN-1",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/10000",
+    "fields": {
+    "summary": "Automate Work Tracker",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10001",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "In Progress",
+    "id": "10001",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/4",
+    "id": 4,
+    "key": "indeterminate",
+    "colorName": "yellow",
+    "name": "In Progress"
+    }
+    },
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10002",
+    "id": "10002",
+    "description": "Epics track collections of related bugs, stories, and tasks.",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+    "name": "Epic",
+    "subtask": false,
+    "avatarId": 10307,
+    "entityId": "5e6d70f0-2bcc-4298-8023-20cacb0923f0",
+    "hierarchyLevel": 1
+    }
+    }
+    },
+    "timespent": null,
+    "project": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/project/10000",
+    "id": "10000",
+    "key": "SAN",
+    "name": "Sandbox",
+    "projectTypeKey": "software",
+    "simplified": true,
+    "avatarUrls": {
+    "48x48": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410",
+    "24x24": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=small",
+    "16x16": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=xsmall",
+    "32x32": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=medium"
+    }
+    },
+    "fixVersions": [ ],
+    "aggregatetimespent": null,
+    "resolution": null,
+    "customfield_10027": null,
+    "customfield_10028": null,
+    "customfield_10029": null,
+    "resolutiondate": null,
+    "workratio": -1,
+    "watches": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/SAN-3/watchers",
+    "watchCount": 1,
+    "isWatching": true
+    },
+    "lastViewed": "2022-12-04T22:12:07.066-0600",
+    "created": "2022-11-26T14:16:01.134-0600",
+    "customfield_10020": [
+    {
+    "id": 2,
+    "name": "SAN Sprint 2",
+    "state": "future",
+    "boardId": 1,
+    "goal": "",
+    "startDate": "2022-12-10T06:00:00.000Z",
+    "endDate": "2022-12-24T06:00:00.000Z"
+    }
+    ],
+    "customfield_10021": null,
+    "customfield_10022": null,
+    "customfield_10023": null,
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "customfield_10024": null,
+    "customfield_10025": null,
+    "labels": [ ],
+    "customfield_10026": null,
+    "customfield_10016": null,
+    "customfield_10017": null,
+    "customfield_10018": {
+    "hasEpicLinkFieldDependency": false,
+    "showField": false,
+    "nonEditableReason": {
+    "reason": "PLUGIN_LICENSE_ERROR",
+    "message": "The Parent Link is only available to Jira Premium users."
+    }
+    },
+    "customfield_10019": "0|i0000f:",
+    "aggregatetimeoriginalestimate": null,
+    "timeestimate": null,
+    "versions": [ ],
+    "issuelinks": [ ],
+    "assignee": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/user?accountId=637f8986de5cdaba3a67d42b",
+    "accountId": "637f8986de5cdaba3a67d42b",
+    "emailAddress": "connor.davenport92@gmail.com",
+    "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "24x24": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "16x16": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "32x32": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png"
+    },
+    "displayName": "Connor Davenport",
+    "active": true,
+    "timeZone": "America/Chicago",
+    "accountType": "atlassian"
+    },
+    "updated": "2022-12-09T20:09:22.065-0600",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10000",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "To Do",
+    "id": "10000",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+    }
+    },
+    "components": [ ],
+    "timeoriginalestimate": null,
+    "description": null,
+    "customfield_10010": null,
+    "customfield_10014": null,
+    "customfield_10015": null,
+    "customfield_10005": null,
+    "customfield_10006": null,
+    "security": null,
+    "customfield_10007": null,
+    "customfield_10008": null,
+    "customfield_10009": null,
+    "aggregatetimeestimate": null,
+    "summary": "MMP",
+    "creator": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/user?accountId=637f8986de5cdaba3a67d42b",
+    "accountId": "637f8986de5cdaba3a67d42b",
+    "emailAddress": "connor.davenport92@gmail.com",
+    "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "24x24": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "16x16": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "32x32": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png"
+    },
+    "displayName": "Connor Davenport",
+    "active": true,
+    "timeZone": "America/Chicago",
+    "accountType": "atlassian"
+    },
+    "subtasks": [ ],
+    "reporter": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/user?accountId=637f8986de5cdaba3a67d42b",
+    "accountId": "637f8986de5cdaba3a67d42b",
+    "emailAddress": "connor.davenport92@gmail.com",
+    "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "24x24": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "16x16": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "32x32": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png"
+    },
+    "displayName": "Connor Davenport",
+    "active": true,
+    "timeZone": "America/Chicago",
+    "accountType": "atlassian"
+    },
+    "aggregateprogress": {
+    "progress": 0,
+    "total": 0
+    },
+    "customfield_10001": null,
+    "customfield_10002": null,
+    "customfield_10003": null,
+    "customfield_10004": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+    "progress": 0,
+    "total": 0
+    },
+    "votes": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/SAN-3/votes",
+    "votes": 0,
+    "hasVoted": false
+    }
+    }
+    },
+    {
+    "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+    "id": "10001",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/latest/issue/10001",
+    "key": "SAN-2",
+    "fields": {
+    "statuscategorychangedate": "2022-12-06T09:50:25.596-0600",
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10005",
+    "id": "10005",
+    "description": "Between an Epic and Story",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+    "name": "Feature",
+    "subtask": false,
+    "avatarId": 10315,
+    "entityId": "dc9a98b0-4eeb-40f5-9e5d-d618dc6a37a1",
+    "hierarchyLevel": 0
+    },
+    "parent": {
+    "id": "10000",
+    "key": "SAN-1",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/10000",
+    "fields": {
+    "summary": "Automate Work Tracker",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10001",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "In Progress",
+    "id": "10001",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/4",
+    "id": 4,
+    "key": "indeterminate",
+    "colorName": "yellow",
+    "name": "In Progress"
+    }
+    },
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10002",
+    "id": "10002",
+    "description": "Epics track collections of related bugs, stories, and tasks.",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+    "name": "Epic",
+    "subtask": false,
+    "avatarId": 10307,
+    "entityId": "5e6d70f0-2bcc-4298-8023-20cacb0923f0",
+    "hierarchyLevel": 1
+    }
+    }
+    },
+    "timespent": null,
+    "project": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/project/10000",
+    "id": "10000",
+    "key": "SAN",
+    "name": "Sandbox",
+    "projectTypeKey": "software",
+    "simplified": true,
+    "avatarUrls": {
+    "48x48": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410",
+    "24x24": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=small",
+    "16x16": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=xsmall",
+    "32x32": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=medium"
+    }
+    },
+    "fixVersions": [ ],
+    "aggregatetimespent": null,
+    "resolution": null,
+    "customfield_10027": null,
+    "customfield_10028": null,
+    "customfield_10029": null,
+    "resolutiondate": null,
+    "workratio": -1,
+    "watches": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/SAN-2/watchers",
+    "watchCount": 1,
+    "isWatching": true
+    },
+    "lastViewed": "2022-12-06T10:50:05.358-0600",
+    "created": "2022-11-26T14:15:57.357-0600",
+    "customfield_10020": [
+    {
+    "id": 1,
+    "name": "SAN Sprint 1",
+    "state": "future",
+    "boardId": 1,
+    "goal": "",
+    "startDate": "2022-11-26T06:00:00.000Z",
+    "endDate": "2022-12-10T06:00:00.000Z"
+    }
+    ],
+    "customfield_10021": null,
+    "customfield_10022": null,
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "customfield_10023": null,
+    "customfield_10024": null,
+    "customfield_10025": null,
+    "customfield_10026": null,
+    "labels": [ ],
+    "customfield_10016": null,
+    "customfield_10017": null,
+    "customfield_10018": {
+    "hasEpicLinkFieldDependency": false,
+    "showField": false,
+    "nonEditableReason": {
+    "reason": "PLUGIN_LICENSE_ERROR",
+    "message": "The Parent Link is only available to Jira Premium users."
+    }
+    },
+    "customfield_10019": "0|i00007:",
+    "aggregatetimeoriginalestimate": null,
+    "timeestimate": null,
+    "versions": [ ],
+    "issuelinks": [
+    {
+    "id": "10000",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issueLink/10000",
+    "type": {
+    "id": "10003",
+    "name": "Relates",
+    "inward": "relates to",
+    "outward": "relates to",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issueLinkType/10003"
+    },
+    "outwardIssue": {
+    "id": "10000",
+    "key": "SAN-1",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/10000",
+    "fields": {
+    "summary": "Automate Work Tracker",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10001",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "In Progress",
+    "id": "10001",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/4",
+    "id": 4,
+    "key": "indeterminate",
+    "colorName": "yellow",
+    "name": "In Progress"
+    }
+    },
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10002",
+    "id": "10002",
+    "description": "Epics track collections of related bugs, stories, and tasks.",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+    "name": "Epic",
+    "subtask": false,
+    "avatarId": 10307,
+    "entityId": "5e6d70f0-2bcc-4298-8023-20cacb0923f0",
+    "hierarchyLevel": 1
+    }
+    }
+    }
+    }
+    ],
+    "assignee": null,
+    "updated": "2022-12-09T20:09:19.989-0600",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10001",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "In Progress",
+    "id": "10001",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/4",
+    "id": 4,
+    "key": "indeterminate",
+    "colorName": "yellow",
+    "name": "In Progress"
+    }
+    },
+    "components": [ ],
+    "timeoriginalestimate": null,
+    "description": null,
+    "customfield_10010": null,
+    "customfield_10014": null,
+    "customfield_10015": null,
+    "customfield_10005": null,
+    "customfield_10006": null,
+    "customfield_10007": null,
+    "security": null,
+    "customfield_10008": null,
+    "customfield_10009": null,
+    "aggregatetimeestimate": null,
+    "summary": "MVP",
+    "creator": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/user?accountId=637f8986de5cdaba3a67d42b",
+    "accountId": "637f8986de5cdaba3a67d42b",
+    "emailAddress": "connor.davenport92@gmail.com",
+    "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "24x24": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "16x16": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "32x32": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png"
+    },
+    "displayName": "Connor Davenport",
+    "active": true,
+    "timeZone": "America/Chicago",
+    "accountType": "atlassian"
+    },
+    "subtasks": [
+    {
+    "id": "10003",
+    "key": "SAN-4",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/10003",
+    "fields": {
+    "summary": "ADO Integration",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10002",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "Done",
+    "id": "10002",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/3",
+    "id": 3,
+    "key": "done",
+    "colorName": "green",
+    "name": "Done"
+    }
+    },
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10003",
+    "id": "10003",
+    "description": "Subtasks track small pieces of work that are part of a larger task.",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium",
+    "name": "Subtask",
+    "subtask": true,
+    "avatarId": 10316,
+    "entityId": "6c7eedee-643d-492f-bb84-0b9aa51fbe57",
+    "hierarchyLevel": -1
+    }
+    }
+    },
+    {
+    "id": "10004",
+    "key": "SAN-5",
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/10004",
+    "fields": {
+    "summary": "Jira Integration",
+    "status": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/status/10001",
+    "description": "",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/",
+    "name": "In Progress",
+    "id": "10001",
+    "statusCategory": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/statuscategory/4",
+    "id": 4,
+    "key": "indeterminate",
+    "colorName": "yellow",
+    "name": "In Progress"
+    }
+    },
+    "priority": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/priority/3",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/images/icons/priorities/medium.svg",
+    "name": "Medium",
+    "id": "3"
+    },
+    "issuetype": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issuetype/10003",
+    "id": "10003",
+    "description": "Subtasks track small pieces of work that are part of a larger task.",
+    "iconUrl": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium",
+    "name": "Subtask",
+    "subtask": true,
+    "avatarId": 10316,
+    "entityId": "6c7eedee-643d-492f-bb84-0b9aa51fbe57",
+    "hierarchyLevel": -1
+    }
+    }
+    }
+    ],
+    "reporter": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/user?accountId=637f8986de5cdaba3a67d42b",
+    "accountId": "637f8986de5cdaba3a67d42b",
+    "emailAddress": "connor.davenport92@gmail.com",
+    "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "24x24": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "16x16": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png",
+    "32x32": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png"
+    },
+    "displayName": "Connor Davenport",
+    "active": true,
+    "timeZone": "America/Chicago",
+    "accountType": "atlassian"
+    },
+    "aggregateprogress": {
+    "progress": 0,
+    "total": 0
+    },
+    "customfield_10001": null,
+    "customfield_10002": null,
+    "customfield_10003": null,
+    "customfield_10004": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+    "progress": 0,
+    "total": 0
+    },
+    "votes": {
+    "self": "https://davenportsoftwareconsulting.atlassian.net/rest/api/2/issue/SAN-2/votes",
+    "votes": 0,
+    "hasVoted": false
+    }
+    }
+    }
+    ]
+    }
