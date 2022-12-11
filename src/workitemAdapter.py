@@ -52,10 +52,8 @@ class WorkitemAdapter:
     def connection_test(self):
         testResponse = self.__genericRequest(self.testURL)
         if testResponse:
-            print("pass")
             return True
         else:
-            print("fail")
             return
 
     def __str__(self) -> str:

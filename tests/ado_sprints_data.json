@@ -1,0 +1,27 @@
+{
+    "count": 2,
+    "value": [
+    {
+    "id": "9e9efb22-877c-414e-873e-1d193455cd64",
+    "name": "Sprint 1",
+    "path": "Davenport software consulting\\Sprint 1",
+    "attributes": {
+    "startDate": "2022-12-10T00:00:00Z",
+    "finishDate": "2022-12-24T00:00:00Z",
+    "timeFrame": "current"
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/5ec5e608-5b74-4bbb-89f4-f2088787e768/_apis/work/teamsettings/iterations/9e9efb22-877c-414e-873e-1d193455cd64"
+    },
+    {
+    "id": "7cb92d6b-f316-4f32-ab9c-060f47088bbd",
+    "name": "Sprint 2",
+    "path": "Davenport software consulting\\Sprint 2",
+    "attributes": {
+    "startDate": "2022-12-24T00:00:00Z",
+    "finishDate": "2023-01-07T00:00:00Z",
+    "timeFrame": "future"
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/5ec5e608-5b74-4bbb-89f4-f2088787e768/_apis/work/teamsettings/iterations/7cb92d6b-f316-4f32-ab9c-060f47088bbd"
+    }
+    ]
+    }
