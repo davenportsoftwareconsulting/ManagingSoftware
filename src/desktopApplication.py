@@ -51,9 +51,6 @@ class desktopApplication:
         elif externalInterface.lower() == "git":
             self.externalRepoInterface = ExternalRepoInterface.GIT
 
-    def Gather_All_Inputs(self):
-        pass
-
     def __Gather_And_Remove_Config(self):
         try:
             self.workitemAdapter = WorkitemAdapter(self.externalWorkitemInterface, self.usernameEntry.get(), self.passwordEntry.get(), self.organizationEntry.get(), self.projectEntry.get() if self.projectEntry else None)
@@ -97,7 +94,7 @@ class desktopApplication:
             self.usernameEntry.insert(0, defaultUsername)
 
         passwordLabel = customtkinter.CTkLabel(master=self.workitemConfigFrame, text='Password', padx=15, pady=20)
-        self.passwordEntry = customtkinter.CTkEntry(master=self.workitemConfigFrame, placeholder_text=f'{self.externalWorkitemInterface.name} password')
+        self.passwordEntry = customtkinter.CTkEntry(master=self.workitemConfigFrame, placeholder_text=f'{self.externalWorkitemInterface.name} password', show="*")
         if defaultPassword:
             self.passwordEntry.insert(0, defaultPassword)
 
