@@ -1,0 +1,14 @@
+{
+    "value": [
+    {
+    "id": "5ec5e608-5b74-4bbb-89f4-f2088787e768",
+    "name": "Davenport software consulting Team",
+    "url": "https://dev.azure.com/connordavenport92/_apis/projects/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/teams/5ec5e608-5b74-4bbb-89f4-f2088787e768",
+    "description": "The default project team.",
+    "identityUrl": "https://spsprodcus4.vssps.visualstudio.com/Aeacd0ebc-fc56-4492-9244-47c0e40ba1aa/_apis/Identities/5ec5e608-5b74-4bbb-89f4-f2088787e768",
+    "projectName": "Davenport software consulting",
+    "projectId": "9dcec5b1-1f5a-443c-b222-e6031f02b4e3"
+    }
+    ],
+    "count": 1
+    }

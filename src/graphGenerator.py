@@ -1,5 +1,6 @@
 from workitemAdapter import WorkitemAdapter, ExternalWorkitemInterface
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 from datetime import datetime
 import seaborn as sns
 import numpy as np
@@ -63,3 +64,34 @@ class GraphGenerator:
         plt.yticks(np.arange(1, maxCount, 1.0))
         plt.savefig(outputFileName)
         plt.close()
+
+    def Generate_Gantt_Chart(self, workitemID: str, sprintScope:str, outputFileName: str = None):
+        if not outputFileName:
+            outputFileName = "feature_gantt.jpg"
+
+        sprints = self.workitemAdapter.Get_Sprints(sprintScope)
+        sprintList = list(sprints.keys())
+        x_pos = np.arange(len(sprints))
+
+        workitemTitle = self.workitemAdapter.Get_Workitem_Title(workitemID)
+
+        childList = []
+        childWidths = []
+        childLeft = []
+        parentChildrenList = self.workitemAdapter.Get_Workitem_Associations(workitemID)['Children']
+        for child in parentChildrenList:
+            childList.append(child)
+            childWidths.append(1)
+            childLeft.append(sprintList.index(self.workitemAdapter.Get_Workitem_Sprint(child)))
+
+        fig, ax = plt.subplots(1, figsize=(16,6))
+
+        ax.barh(y=childList, width=childWidths, height=0.8, left=childLeft)
+        
+        ax.set_xticks(x_pos, tuple(sprintList))
+
+        plt.title(f"{workitemID}: {workitemTitle}\nGantt Chart")
+        plt.ylabel("Children")
+        plt.savefig(outputFileName)
+        plt.close()
+        plt.show()

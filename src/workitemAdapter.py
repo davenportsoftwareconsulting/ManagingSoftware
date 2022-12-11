@@ -18,6 +18,7 @@ class TimeGranularity(Enum):
 
 class WorkitemAdapter:
     fieldList = []
+    fieldDataList = []
     
     def __init__(self, connectionType: ExternalWorkitemInterface, username: str, password: str, organization: str, project: str = None) -> None:
         self.connectionType = connectionType
@@ -35,6 +36,7 @@ class WorkitemAdapter:
             self.postContentType = "application/json"
             for fieldEntry in self.__genericRequest(f"{self.baseURL}/wit/fields")['value']:
                 self.fieldList.append(fieldEntry['referenceName'])
+                self.fieldDataList.append(fieldEntry)
 
         if self.connectionType == ExternalWorkitemInterface.JIRA:
             self.baseURL = f"https://{organization}.atlassian.net/rest/api"
@@ -45,6 +47,7 @@ class WorkitemAdapter:
             self.postContentType = "application/json"
             for fieldEntry in self.__genericRequest(f"{self.baseURL}/latest/field"):
                 self.fieldList.append(fieldEntry['key'])
+                self.fieldDataList.append(fieldEntry)
 
     def connection_test(self):
         testResponse = self.__genericRequest(self.testURL)
@@ -106,6 +109,7 @@ class WorkitemAdapter:
     def Str_To_Datetime(self, dateString: str) -> datetime:
         inputFormat = "%Y-%m-%d %H:%M:%S"
         dateString = dateString.replace('T', ' ')
+        dateString = dateString.replace('Z', '')
         if '.' in dateString:
             dateString = dateString[:dateString.find('.')]
 
@@ -404,3 +408,52 @@ class WorkitemAdapter:
                 featureList.append(feature['key'])
 
         return featureList
+
+    def Get_Workitem_Sprint(self, workitemID: str):
+        workitemFields = self.Get_Workitem_Fields(workitemID)
+        if self.connectionType == ExternalWorkitemInterface.ADO:
+            return workitemFields['System.IterationPath'].split('\\')[-1]
+        elif self.connectionType == ExternalWorkitemInterface.JIRA:
+            for field in self.fieldDataList:
+                if field['name'] == 'Sprint':
+                    sprintField = field['id']
+                    break
+            return workitemFields[sprintField][0]['name']
+
+    def Get_Sprints(self, inputScope: str):
+        sprintDict = {}
+        if self.connectionType == ExternalWorkitemInterface.ADO:
+            iterationsURL = f"https://dev.azure.com/{self.organization}/{self.project}/{inputScope}/_apis/work/teamsettings/iterations"
+            try:
+                iterationsValue = self.__genericRequest(iterationsURL)['value']
+            except Exception as _:
+                raise ValueError(f"{inputScope} not a valid team")
+
+            for sprint in iterationsValue:
+                sprintDict[sprint['name']] = {'Start': self.Str_To_Datetime(sprint['attributes']['startDate']), 'End': self.Str_To_Datetime(sprint['attributes']['finishDate'])}
+
+        if self.connectionType == ExternalWorkitemInterface.JIRA:
+            iterationsURL = f"https://{self.organization}.atlassian.net/rest/agile/1.0/board/{inputScope}/sprint"
+            try:
+                iterationsValue = self.__genericRequest(iterationsURL)['values'][::-1]
+            except Exception as _:
+                raise ValueError(f"{inputScope} not a valid board")
+
+            for sprint in iterationsValue:
+                sprintDict[sprint['name']] = {'Start': self.Str_To_Datetime(sprint['startDate']), 'End': self.Str_To_Datetime(sprint['endDate'])}
+
+        return sprintDict
+
+    def Get_Board_or_Teams(self):
+        returnList = []
+        if self.connectionType == ExternalWorkitemInterface.JIRA:
+            boardsURL = f"https://{self.organization}.atlassian.net/rest/agile/1.0/board"
+            for board in self.__genericRequest(boardsURL)['values']:
+                returnList.append((board['name'], board['id']))
+
+        elif self.connectionType == ExternalWorkitemInterface.ADO:
+            teamsURL = f"https://dev.azure.com/{self.organization}/_apis/projects/{self.project}/teams"
+            for team in self.__genericRequest(teamsURL)['value']:
+                returnList.append((team['name'], team['id']))
+                
+        return returnList

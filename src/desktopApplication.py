@@ -131,17 +131,25 @@ class desktopApplication:
         self.frame.grid_remove()
         self.frame = customtkinter.CTkFrame(master=self.app, width=1200)
 
+        boardTeamNameList = []
+        boardTeamIdList = []
+        for name, id in self.workitemAdapter.Get_Board_or_Teams():
+            boardTeamNameList.append(name)
+            boardTeamIdList.append(id)
+
         projectLabel = customtkinter.CTkLabel(master=self.frame, text="Project", padx=15, pady=20)
         projectDropbox = customtkinter.CTkOptionMenu(master=self.frame, values=self.workitemAdapter.Get_Projects())
         featureLabel = customtkinter.CTkLabel(master=self.frame, text="Feature", padx=15, pady=20)
         featureDropbox = customtkinter.CTkOptionMenu(master=self.frame, values=self.workitemAdapter.Get_Features())
+        boardTeamLabel = customtkinter.CTkLabel(master=self.frame, text="Board" if self.workitemAdapter.connectionType == ExternalWorkitemInterface.JIRA else "Team", padx=15, pady=20)
+        boardTeamDropbox = customtkinter.CTkOptionMenu(master=self.frame, values=boardTeamNameList)
         fromDateLabel = customtkinter.CTkLabel(master=self.frame, text="From", padx=15, pady=20)
         fromDateEntry = customtkinter.CTkEntry(master=self.frame, placeholder_text="01/01/2020")
         toDateLabel = customtkinter.CTkLabel(master=self.frame, text="To", padx=15, pady=20)
         toDateEntry = customtkinter.CTkEntry(master=self.frame, placeholder_text="01/01/2020")
         featureProgressImage = customtkinter.CTkButton(master=self.frame, text="Feature Progress Chart", width=900, fg_color=('gray92', 'gray16'), pady=20)
-        featureSubmitButton = customtkinter.CTkButton(
-            master=self.frame, text="Generate",
+        progressButton = customtkinter.CTkButton(
+            master=self.frame, text="Progress",
             command=lambda:[
                 self.graphGenerator.Generate_State_Stacked_Area_Chart(
                     featureID=featureDropbox.get(),
@@ -150,20 +158,32 @@ class desktopApplication:
                 ),
                 self.Update_Feature_Image(featureProgressImage)
             ],
-            pady=20
+            pady=20, padx=15
         )
-        # featureProgressImage['image'] = featureImage
-        # featureProgressImage = customtkinter.CTkCanvas(master=self.frame, height=250, width=500, )
+        ganttButton = customtkinter.CTkButton(
+            master=self.frame, text="Gantt",
+            command=lambda:[
+                self.graphGenerator.Generate_Gantt_Chart(
+                    workitemID=featureDropbox.get(),
+                    sprintScope=boardTeamIdList[boardTeamNameList.index(boardTeamDropbox.get())]
+                ),
+                self.Update_Gantt_Image(featureProgressImage)
+            ],
+            pady=20, padx=15
+        )
 
-        projectLabel.grid(row=0, column=0)
-        projectDropbox.grid(row=1, column=0)
-        featureLabel.grid(row=0, column=1)
-        featureDropbox.grid(row=1, column=1)
-        fromDateLabel.grid(row=0, column=2)
-        fromDateEntry.grid(row=1, column=2)
-        toDateLabel.grid(row=0, column=3)
-        toDateEntry.grid(row=1, column=3)
-        featureSubmitButton.grid(row=2, column=1)
+        progressButton.grid(row=0, column=0)
+        ganttButton.grid(row=0, column=1)
+        projectLabel.grid(row=1, column=0)
+        projectDropbox.grid(row=2, column=0)
+        featureLabel.grid(row=1, column=1)
+        featureDropbox.grid(row=2, column=1)
+        boardTeamLabel.grid(row=1, column=2)
+        boardTeamDropbox.grid(row=2, column=2)
+        fromDateLabel.grid(row=1, column=3)
+        fromDateEntry.grid(row=2, column=3)
+        toDateLabel.grid(row=1, column=4)
+        toDateEntry.grid(row=2, column=4)
         featureProgressImage.grid(row=3, column=0, columnspan=4)
 
         self.frame.grid()
@@ -173,6 +193,14 @@ class desktopApplication:
         featureBaseImage = featureBaseImage.resize((1200,700))
         featureImage = ImageTk.PhotoImage(featureBaseImage, master=self.frame)
         self.featureImageList.append(featureImage)
+        imageButton.configure(image=self.featureImageList[-1], text="")
+        imageButton.image = self.featureImageList[-1]
+
+    def Update_Gantt_Image(self, imageButton: customtkinter.CTkButton):
+        ganttBaseImage = Image.open("feature_gantt.jpg")
+        ganttBaseImage = ganttBaseImage.resize((1200,700))
+        ganttImage = ImageTk.PhotoImage(ganttBaseImage, master=self.frame)
+        self.featureImageList.append(ganttImage)
         imageButton.configure(image=self.featureImageList[-1], text="")
         imageButton.image = self.featureImageList[-1]
 
