@@ -108,6 +108,8 @@ class WorkitemAdapter:
         inputFormat = "%Y-%m-%d %H:%M:%S"
         dateString = dateString.replace('T', ' ')
         dateString = dateString.replace('Z', '')
+        if '+' in dateString:
+            dateString = dateString[:dateString.find('+')]
         if '.' in dateString:
             dateString = dateString[:dateString.find('.')]
 

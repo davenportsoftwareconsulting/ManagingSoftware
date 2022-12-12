@@ -1,0 +1,131 @@
+{
+    "count": 6,
+    "value": [
+    {
+    "commitId": "85c324cab3a062073a7e98da4f0eb10163aa1900",
+    "author": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-11T23:30:37Z"
+    },
+    "committer": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-11T23:30:37Z"
+    },
+    "comment": "Hide PAT, even if passed from Env",
+    "changeCounts": {
+    "Add": 0,
+    "Edit": 1,
+    "Delete": 0
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82/commits/85c324cab3a062073a7e98da4f0eb10163aa1900",
+    "remoteUrl": "https://dev.azure.com/connordavenport92/Davenport software consulting/_git/ManagingSoftware/commit/85c324cab3a062073a7e98da4f0eb10163aa1900"
+    },
+    {
+    "commitId": "d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+    "author": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-11T23:17:57Z"
+    },
+    "committer": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-11T23:17:57Z"
+    },
+    "comment": "Gap in test coverage for workitemAdapter",
+    "changeCounts": {
+    "Add": 2,
+    "Edit": 3,
+    "Delete": 0
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82/commits/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+    "remoteUrl": "https://dev.azure.com/connordavenport92/Davenport software consulting/_git/ManagingSoftware/commit/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d"
+    },
+    {
+    "commitId": "2721f52819b283aedf384fffc1d40a2e35206184",
+    "author": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-11T21:40:53Z"
+    },
+    "committer": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-11T21:40:53Z"
+    },
+    "comment": "Gantt chart first pass",
+    "changeCounts": {
+    "Add": 3,
+    "Edit": 3,
+    "Delete": 0
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82/commits/2721f52819b283aedf384fffc1d40a2e35206184",
+    "remoteUrl": "https://dev.azure.com/connordavenport92/Davenport software consulting/_git/ManagingSoftware/commit/2721f52819b283aedf384fffc1d40a2e35206184"
+    },
+    {
+    "commitId": "51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+    "author": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-10T05:30:14Z"
+    },
+    "committer": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-10T05:30:14Z"
+    },
+    "comment": "Remainder of testing for workitemAdapter",
+    "changeCounts": {
+    "Add": 7,
+    "Edit": 3,
+    "Delete": 0
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82/commits/51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+    "remoteUrl": "https://dev.azure.com/connordavenport92/Davenport software consulting/_git/ManagingSoftware/commit/51dcbae8b09e2a59d50f87220028f6ab1852fe5e"
+    },
+    {
+    "commitId": "420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+    "author": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-08T05:01:30Z"
+    },
+    "committer": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-08T05:01:30Z"
+    },
+    "comment": "First level unit testing",
+    "changeCounts": {
+    "Add": 3,
+    "Edit": 2,
+    "Delete": 0
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82/commits/420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+    "remoteUrl": "https://dev.azure.com/connordavenport92/Davenport software consulting/_git/ManagingSoftware/commit/420f02e6ff044ea0b46ad7979162a8ca3d089b91"
+    },
+    {
+    "commitId": "59dd7ec3086952d65377cd0039705b1d3010d0b7",
+    "author": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-06T20:46:48Z"
+    },
+    "committer": {
+    "name": "Connor Davenport",
+    "email": "connor.davenport92@gmail.com",
+    "date": "2022-12-06T20:46:48Z"
+    },
+    "comment": "Initial seed from other repo",
+    "changeCounts": {
+    "Add": 15,
+    "Edit": 0,
+    "Delete": 0
+    },
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82/commits/59dd7ec3086952d65377cd0039705b1d3010d0b7",
+    "remoteUrl": "https://dev.azure.com/connordavenport92/Davenport software consulting/_git/ManagingSoftware/commit/59dd7ec3086952d65377cd0039705b1d3010d0b7"
+    }
+    ]
+    }

@@ -1,0 +1,470 @@
+[
+    {
+        "sha": "85c324cab3a062073a7e98da4f0eb10163aa1900",
+        "node_id": "C_kwDOIkfZV9oAKDg1YzMyNGNhYjNhMDYyMDczYTdlOThkYTRmMGViMTAxNjNhYTE5MDA",
+        "commit": {
+            "author": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-11T23:30:37Z"
+            },
+            "committer": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-11T23:30:37Z"
+            },
+            "message": "Hide PAT, even if passed from Env",
+            "tree": {
+                "sha": "a4f4177a600cb2f209118569c7ce531e785318db",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/trees/a4f4177a600cb2f209118569c7ce531e785318db"
+            },
+            "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/commits/85c324cab3a062073a7e98da4f0eb10163aa1900",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/85c324cab3a062073a7e98da4f0eb10163aa1900",
+        "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/85c324cab3a062073a7e98da4f0eb10163aa1900",
+        "comments_url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/85c324cab3a062073a7e98da4f0eb10163aa1900/comments",
+        "author": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+                "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d"
+            }
+        ]
+    },
+    {
+        "sha": "d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+        "node_id": "C_kwDOIkfZV9oAKGQxYjFhYzlmNzczY2IwZTlkYmMxNzBkMjg3ZDBiNTU1M2MxMmQ5MWQ",
+        "commit": {
+            "author": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-11T23:17:57Z"
+            },
+            "committer": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-11T23:17:57Z"
+            },
+            "message": "Gap in test coverage for workitemAdapter",
+            "tree": {
+                "sha": "3b306ab538f1dd7b92dc44b2801efc6ee610006d",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/trees/3b306ab538f1dd7b92dc44b2801efc6ee610006d"
+            },
+            "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/commits/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+        "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d",
+        "comments_url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/d1b1ac9f773cb0e9dbc170d287d0b5553c12d91d/comments",
+        "author": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "2721f52819b283aedf384fffc1d40a2e35206184",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/2721f52819b283aedf384fffc1d40a2e35206184",
+                "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/2721f52819b283aedf384fffc1d40a2e35206184"
+            }
+        ]
+    },
+    {
+        "sha": "2721f52819b283aedf384fffc1d40a2e35206184",
+        "node_id": "C_kwDOIkfZV9oAKDI3MjFmNTI4MTliMjgzYWVkZjM4NGZmZmMxZDQwYTJlMzUyMDYxODQ",
+        "commit": {
+            "author": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-11T21:40:53Z"
+            },
+            "committer": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-11T21:40:53Z"
+            },
+            "message": "Gantt chart first pass",
+            "tree": {
+                "sha": "d23475b23a394e23a70873b7984982ba067161c4",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/trees/d23475b23a394e23a70873b7984982ba067161c4"
+            },
+            "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/commits/2721f52819b283aedf384fffc1d40a2e35206184",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/2721f52819b283aedf384fffc1d40a2e35206184",
+        "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/2721f52819b283aedf384fffc1d40a2e35206184",
+        "comments_url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/2721f52819b283aedf384fffc1d40a2e35206184/comments",
+        "author": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+                "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/51dcbae8b09e2a59d50f87220028f6ab1852fe5e"
+            }
+        ]
+    },
+    {
+        "sha": "51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+        "node_id": "C_kwDOIkfZV9oAKDUxZGNiYWU4YjA5ZTJhNTlkNTBmODcyMjAwMjhmNmFiMTg1MmZlNWU",
+        "commit": {
+            "author": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-10T05:30:14Z"
+            },
+            "committer": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-10T05:30:14Z"
+            },
+            "message": "Remainder of testing for workitemAdapter",
+            "tree": {
+                "sha": "e6e4726cc1c2b17b5230cf37ae0ec34abe5dbb2d",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/trees/e6e4726cc1c2b17b5230cf37ae0ec34abe5dbb2d"
+            },
+            "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/commits/51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+        "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/51dcbae8b09e2a59d50f87220028f6ab1852fe5e",
+        "comments_url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/51dcbae8b09e2a59d50f87220028f6ab1852fe5e/comments",
+        "author": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+                "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/420f02e6ff044ea0b46ad7979162a8ca3d089b91"
+            }
+        ]
+    },
+    {
+        "sha": "420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+        "node_id": "C_kwDOIkfZV9oAKDQyMGYwMmU2ZmYwNDRlYTBiNDZhZDc5NzkxNjJhOGNhM2QwODliOTE",
+        "commit": {
+            "author": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-08T05:01:30Z"
+            },
+            "committer": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-08T05:01:30Z"
+            },
+            "message": "First level unit testing",
+            "tree": {
+                "sha": "07279a35bc7a0d9a23f0ce771430e489a3b404b5",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/trees/07279a35bc7a0d9a23f0ce771430e489a3b404b5"
+            },
+            "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/commits/420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+        "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/420f02e6ff044ea0b46ad7979162a8ca3d089b91",
+        "comments_url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/420f02e6ff044ea0b46ad7979162a8ca3d089b91/comments",
+        "author": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": [
+            {
+                "sha": "59dd7ec3086952d65377cd0039705b1d3010d0b7",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/59dd7ec3086952d65377cd0039705b1d3010d0b7",
+                "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/59dd7ec3086952d65377cd0039705b1d3010d0b7"
+            }
+        ]
+    },
+    {
+        "sha": "59dd7ec3086952d65377cd0039705b1d3010d0b7",
+        "node_id": "C_kwDOIkfZV9oAKDU5ZGQ3ZWMzMDg2OTUyZDY1Mzc3Y2QwMDM5NzA1YjFkMzAxMGQwYjc",
+        "commit": {
+            "author": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-06T20:46:48Z"
+            },
+            "committer": {
+                "name": "Connor Davenport",
+                "email": "connor.davenport92@gmail.com",
+                "date": "2022-12-06T20:46:48Z"
+            },
+            "message": "Initial seed from other repo",
+            "tree": {
+                "sha": "a1b7426610b1b2228c69740fe90439ed80b78ada",
+                "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/trees/a1b7426610b1b2228c69740fe90439ed80b78ada"
+            },
+            "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/git/commits/59dd7ec3086952d65377cd0039705b1d3010d0b7",
+            "comment_count": 0,
+            "verification": {
+                "verified": false,
+                "reason": "unsigned",
+                "signature": null,
+                "payload": null
+            }
+        },
+        "url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/59dd7ec3086952d65377cd0039705b1d3010d0b7",
+        "html_url": "https://github.com/davenportsoftwareconsulting/ManagingSoftware/commit/59dd7ec3086952d65377cd0039705b1d3010d0b7",
+        "comments_url": "https://api.github.com/repos/davenportsoftwareconsulting/ManagingSoftware/commits/59dd7ec3086952d65377cd0039705b1d3010d0b7/comments",
+        "author": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "committer": {
+            "login": "fundedwithzeal",
+            "id": 72750841,
+            "node_id": "MDQ6VXNlcjcyNzUwODQx",
+            "avatar_url": "https://avatars.githubusercontent.com/u/72750841?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fundedwithzeal",
+            "html_url": "https://github.com/fundedwithzeal",
+            "followers_url": "https://api.github.com/users/fundedwithzeal/followers",
+            "following_url": "https://api.github.com/users/fundedwithzeal/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fundedwithzeal/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fundedwithzeal/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fundedwithzeal/subscriptions",
+            "organizations_url": "https://api.github.com/users/fundedwithzeal/orgs",
+            "repos_url": "https://api.github.com/users/fundedwithzeal/repos",
+            "events_url": "https://api.github.com/users/fundedwithzeal/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fundedwithzeal/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        "parents": []
+    }
+]

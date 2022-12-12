@@ -1,0 +1,133 @@
+{
+    "values": [
+    {
+    "type": "repository",
+    "full_name": "cdavenport92/managingsoftware",
+    "links": {
+    "self": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware"
+    },
+    "html": {
+    "href": "https://bitbucket.org/cdavenport92/managingsoftware"
+    },
+    "avatar": {
+    "href": "https://bytebucket.org/ravatar/%7B52a5de34-cc0e-4db1-9518-30b4e2c5617b%7D?ts=default"
+    },
+    "pullrequests": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/pullrequests"
+    },
+    "commits": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/commits"
+    },
+    "forks": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/forks"
+    },
+    "watchers": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/watchers"
+    },
+    "branches": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/refs/branches"
+    },
+    "tags": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/refs/tags"
+    },
+    "downloads": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/downloads"
+    },
+    "source": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/src"
+    },
+    "clone": [
+    {
+    "name": "https",
+    "href": "https://bitbucket.org/cdavenport92/managingsoftware.git"
+    },
+    {
+    "name": "ssh",
+    "href": "git@bitbucket.org:cdavenport92/managingsoftware.git"
+    }
+    ],
+    "hooks": {
+    "href": "https://api.bitbucket.org/2.0/repositories/cdavenport92/managingsoftware/hooks"
+    }
+    },
+    "name": "ManagingSoftware",
+    "slug": "managingsoftware",
+    "description": "",
+    "scm": "git",
+    "website": null,
+    "owner": {
+    "display_name": "Connor Davenport",
+    "links": {
+    "self": {
+    "href": "https://api.bitbucket.org/2.0/users/%7Bb3ecace6-32ff-4fc8-8c87-759779f69961%7D"
+    },
+    "avatar": {
+    "href": "https://secure.gravatar.com/avatar/4688a6a58c1f2fe9f03055a403319ee2?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCD-6.png"
+    },
+    "html": {
+    "href": "https://bitbucket.org/%7Bb3ecace6-32ff-4fc8-8c87-759779f69961%7D/"
+    }
+    },
+    "type": "user",
+    "uuid": "{b3ecace6-32ff-4fc8-8c87-759779f69961}",
+    "account_id": "637f8986de5cdaba3a67d42b",
+    "nickname": "Connor Davenport"
+    },
+    "workspace": {
+    "type": "workspace",
+    "uuid": "{b3ecace6-32ff-4fc8-8c87-759779f69961}",
+    "name": "Connor Davenport",
+    "slug": "cdavenport92",
+    "links": {
+    "avatar": {
+    "href": "https://bitbucket.org/workspaces/cdavenport92/avatar/?ts=1670807784"
+    },
+    "html": {
+    "href": "https://bitbucket.org/cdavenport92/"
+    },
+    "self": {
+    "href": "https://api.bitbucket.org/2.0/workspaces/cdavenport92"
+    }
+    }
+    },
+    "is_private": false,
+    "project": {
+    "type": "project",
+    "key": "SAN",
+    "uuid": "{8f2c6993-2c7d-4bc6-9fbd-3c60de7fb60d}",
+    "name": "Sandbox",
+    "links": {
+    "self": {
+    "href": "https://api.bitbucket.org/2.0/workspaces/cdavenport92/projects/SAN"
+    },
+    "html": {
+    "href": "https://bitbucket.org/cdavenport92/workspace/projects/SAN"
+    },
+    "avatar": {
+    "href": "https://bitbucket.org/account/user/cdavenport92/projects/SAN/avatar/32?ts=1670807868"
+    }
+    }
+    },
+    "fork_policy": "allow_forks",
+    "created_on": "2022-12-12T01:17:48.567469+00:00",
+    "updated_on": "2022-12-12T01:17:49.038572+00:00",
+    "size": 304900,
+    "language": "",
+    "has_issues": false,
+    "has_wiki": false,
+    "uuid": "{52a5de34-cc0e-4db1-9518-30b4e2c5617b}",
+    "mainbranch": {
+    "name": "main",
+    "type": "branch"
+    },
+    "override_settings": {
+    "default_merge_strategy": true,
+    "branching_model": true
+    }
+    }
+    ],
+    "pagelen": 10,
+    "size": 1,
+    "page": 1
+    }

@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock, patch, PropertyMock
+from unittest.mock import patch, PropertyMock
 import sys
 import os
 import json

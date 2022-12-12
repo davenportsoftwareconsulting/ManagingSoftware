@@ -1,0 +1,45 @@
+{
+    "value": [
+    {
+    "id": "9d706ddc-6d00-4897-b565-6f4e1a1a8418",
+    "name": "Davenport software consulting",
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/9d706ddc-6d00-4897-b565-6f4e1a1a8418",
+    "project": {
+    "id": "9dcec5b1-1f5a-443c-b222-e6031f02b4e3",
+    "name": "Davenport software consulting",
+    "url": "https://dev.azure.com/connordavenport92/_apis/projects/9dcec5b1-1f5a-443c-b222-e6031f02b4e3",
+    "state": "wellFormed",
+    "revision": 13,
+    "visibility": "private",
+    "lastUpdateTime": "2022-11-26T18:57:54.473Z"
+    },
+    "defaultBranch": "refs/heads/master",
+    "size": 270878,
+    "remoteUrl": "https://connordavenport92@dev.azure.com/connordavenport92/Davenport%20software%20consulting/_git/Davenport%20software%20consulting",
+    "sshUrl": "git@ssh.dev.azure.com:v3/connordavenport92/Davenport%20software%20consulting/Davenport%20software%20consulting",
+    "webUrl": "https://dev.azure.com/connordavenport92/Davenport%20software%20consulting/_git/Davenport%20software%20consulting",
+    "isDisabled": false
+    },
+    {
+    "id": "82dc263c-0591-42b9-b9e1-a99bf7539c82",
+    "name": "ManagingSoftware",
+    "url": "https://dev.azure.com/connordavenport92/9dcec5b1-1f5a-443c-b222-e6031f02b4e3/_apis/git/repositories/82dc263c-0591-42b9-b9e1-a99bf7539c82",
+    "project": {
+    "id": "9dcec5b1-1f5a-443c-b222-e6031f02b4e3",
+    "name": "Davenport software consulting",
+    "url": "https://dev.azure.com/connordavenport92/_apis/projects/9dcec5b1-1f5a-443c-b222-e6031f02b4e3",
+    "state": "wellFormed",
+    "revision": 13,
+    "visibility": "private",
+    "lastUpdateTime": "2022-11-26T18:57:54.473Z"
+    },
+    "defaultBranch": "refs/heads/main",
+    "size": 264471,
+    "remoteUrl": "https://connordavenport92@dev.azure.com/connordavenport92/Davenport%20software%20consulting/_git/ManagingSoftware",
+    "sshUrl": "git@ssh.dev.azure.com:v3/connordavenport92/Davenport%20software%20consulting/ManagingSoftware",
+    "webUrl": "https://dev.azure.com/connordavenport92/Davenport%20software%20consulting/_git/ManagingSoftware",
+    "isDisabled": false
+    }
+    ],
+    "count": 2
+    }
