@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 from unittest.mock import Mock, patch, PropertyMock
 sys.path.append('..')
-from src.repoAdapter import ExternalRepoInterface, repoAdapter
+from src.repoAdapter import ExternalRepoInterface, RepoAdapter
 
 class MockResponse:
     def __init__(self, json_data, status_code):
@@ -18,7 +18,7 @@ class MockResponse:
 class TestRepoAdapter(unittest.TestCase):
     repoAdapters = {}
     def setUp(self) -> None:
-        bitbucketAdapter = repoAdapter(
+        bitbucketAdapter = RepoAdapter(
             connectionType=ExternalRepoInterface.BITBUCKET,
             username=None, password=os.getenv('bitbucket_PAT') if os.getenv('bitbucket_PAT') else os.getenv('jira_PAT'),
             organization=os.getenv('bitbucket_org') if os.getenv('bitbucket_org') else os.getenv('jira_org'), 
@@ -32,7 +32,7 @@ class TestRepoAdapter(unittest.TestCase):
         with open("bitbucket_repo_commits_data.json", 'r') as jsonFile:
             self.repoAdapters['BITBUCKET']['Repo Commits Mock'] = json.loads(jsonFile.read())
         
-        githubAdapter = repoAdapter(
+        githubAdapter = RepoAdapter(
             connectionType=ExternalRepoInterface.GITHUB,
             username=None, password=os.getenv('github_PAT'),
             organization=os.getenv('github_org'), project=None
@@ -45,7 +45,7 @@ class TestRepoAdapter(unittest.TestCase):
         with open("github_repo_commits_data.json", 'r') as jsonFile:
             self.repoAdapters['GITHUB']['Repo Commits Mock'] = json.loads(jsonFile.read())
         
-        adoAdapter = repoAdapter(
+        adoAdapter = RepoAdapter(
             connectionType=ExternalRepoInterface.ADO,
             username=os.getenv('ado_username'), password=os.getenv('ado_PAT'),
             organization=os.getenv('ado_org'), project=os.getenv('ado_project')

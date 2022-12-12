@@ -1,14 +1,22 @@
 from workitemAdapter import WorkitemAdapter, ExternalWorkitemInterface
+from repoAdapter import RepoAdapter, ExternalRepoInterface
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
-from datetime import datetime
+from datetime import datetime, timedelta
 import seaborn as sns
 import numpy as np
 
 class GraphGenerator:
 
-    def __init__(self, workitemAdapter: WorkitemAdapter) -> None:
+    def __init__(self, workitemAdapter: WorkitemAdapter, repoAdapter: RepoAdapter) -> None:
         self.workitemAdapter = workitemAdapter
+        self.repoAdapter = repoAdapter
+
+    def Set_Workitem_Adapter(self, workitemAdapter: WorkitemAdapter) -> None:
+        self.workitemAdapter = workitemAdapter
+
+    def Set_Repo_Adapter(self, repoAdapter: RepoAdapter) -> None:
+        self.repoAdapter = repoAdapter
 
     def Generate_State_Stacked_Area_Chart(self, featureID: str, fromDate: datetime = None, toDate: datetime = None, outputFileName: str = None) -> str:
         if not outputFileName:
@@ -29,7 +37,6 @@ class GraphGenerator:
 
         uniqueStates = []
         flatState = {}
-        x = []
         displayX = []
         firstPass = True
         for childHistoryList in totalStateHistory:
@@ -94,4 +101,35 @@ class GraphGenerator:
         plt.ylabel("Children")
         plt.savefig(outputFileName)
         plt.close()
-        plt.show()
+
+    def Generate_Commit_Bar_Graph(self, repo: str, fromDate: datetime, toDate: datetime, outputFileName: str = None):
+        outputFileName = "repo_commits.jpg" if not outputFileName else outputFileName
+
+        if not toDate:
+            toDate = datetime.now()
+        
+        commits = self.repoAdapter.Get_Repo_Commits(repo, fromDate, toDate)
+        if not fromDate:
+            fromDate = commits[0][2]
+        numOfDays = (toDate - fromDate).days + 1
+        x = []
+        numberOfCommitsList = []
+        for i in range(0,numOfDays):
+            indexDate = fromDate + timedelta(days=i)
+            x.append(indexDate.strftime("%m/%d"))
+            numberOfCommits = 0
+
+            for commit, author, date in commits:
+                compareResult = self.repoAdapter.Compare_Dates(date, indexDate)
+                if compareResult == 0:
+                    numberOfCommits += 1
+                elif compareResult == 1:
+                    break
+
+            numberOfCommitsList.append(numberOfCommits)
+
+        plt.bar(x, numberOfCommitsList, width=.8, bottom = 0)
+        plt.title(f"{repo}: Commit History")
+        plt.ylabel("Commits")
+        plt.savefig(outputFileName)
+        plt.close()

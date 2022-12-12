@@ -137,7 +137,7 @@ class WorkitemAdapter:
         else:
             return 0
 
-    def __compare_dates(self, day1: datetime, day2: datetime, granularity: TimeGranularity = TimeGranularity.DAY):
+    def Compare_Dates(self, day1: datetime, day2: datetime, granularity: TimeGranularity = TimeGranularity.DAY):
         yearCompare = self.__number_compare(day1.year, day2.year)
         monthCompare = self.__number_compare(day1.month, day2.month)
         dayCompare = self.__number_compare(day1.day, day2.day)
@@ -150,7 +150,6 @@ class WorkitemAdapter:
             if compareList[i] != 0:
                 return compareList[i]
         return 0
-
 
     def Get_Workitem_Response(self, workitemID: str):
         return self.__genericRequest(f"{self.baseWorkitemURL}/{workitemID}")
@@ -353,7 +352,7 @@ class WorkitemAdapter:
                         previousVal = previousVal[returnField]
         else:
             for index, fieldChange in enumerate(fieldChanges):
-                if self.__compare_dates(fromDate, fieldChange['Date']) in [0, -1]:
+                if self.Compare_Dates(fromDate, fieldChange['Date']) in [0, -1]:
                     fieldChangIndex = index
                     previousVal = fieldChanges[index]['From']
                     break
@@ -367,8 +366,8 @@ class WorkitemAdapter:
                 returnArray.append((currentDay, previousVal))
                 continue
 
-            if self.__compare_dates(fieldChanges[fieldChangIndex]['Date'], currentDay) == 0:
-                while fieldChangIndex + 1 < len(fieldChanges) and self.__compare_dates(fieldChanges[fieldChangIndex + 1]['Date'], currentDay) == 0:
+            if self.Compare_Dates(fieldChanges[fieldChangIndex]['Date'], currentDay) == 0:
+                while fieldChangIndex + 1 < len(fieldChanges) and self.Compare_Dates(fieldChanges[fieldChangIndex + 1]['Date'], currentDay) == 0:
                     fieldChangIndex += 1
                 returnArray.append((currentDay, fieldChanges[fieldChangIndex]['To']))
                 previousVal = fieldChanges[fieldChangIndex]['To']

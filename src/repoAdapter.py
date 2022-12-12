@@ -8,8 +8,15 @@ class ExternalRepoInterface(Enum):
     ADO = 1
     GITHUB = 2
 
+class TimeGranularity(Enum):
+    SECOND = 5
+    MINUTE = 4
+    HOUR = 3
+    DAY = 2
+    MONTH = 1
+    YEAR = 0
 
-class repoAdapter:
+class RepoAdapter:
 
     def __init__(self, connectionType: ExternalRepoInterface, username: str, password: str, organization: str, project: str) -> None:
         self.connectionType = connectionType
@@ -29,12 +36,13 @@ class repoAdapter:
             self.credentials = ('',password)
             self.requestContentType = "application/json-patch+json"
 
-    def __genericRequest(self, url: str):
+    def __genericRequest(self, url: str, noCredentials = False):
         goodValue = False
         for i in range(0, 3):
+
             r = requests.get(url,
                 headers={'Content-Type': self.requestContentType},
-                auth=self.credentials)
+                auth=None if noCredentials else self.credentials)
 
             if r.status_code == 200:
                 goodValue = True
@@ -48,6 +56,14 @@ class repoAdapter:
             return None
 
         return r.json()
+
+    def __number_compare(self, num1: int, num2: int):
+        if num1 > num2:
+            return 1
+        elif num2 > num1:
+            return -1
+        else:
+            return 0
 
     def Str_To_Datetime(self, dateString: str) -> datetime:
         inputFormat = "%Y-%m-%d %H:%M:%S"
@@ -74,11 +90,28 @@ class repoAdapter:
 
         return returnDatetime
 
+    def Compare_Dates(self, day1: datetime, day2: datetime, granularity: TimeGranularity = TimeGranularity.DAY):
+        yearCompare = self.__number_compare(day1.year, day2.year)
+        monthCompare = self.__number_compare(day1.month, day2.month)
+        dayCompare = self.__number_compare(day1.day, day2.day)
+        hourCompare = self.__number_compare(day1.hour, day2.hour)
+        minuteCompare = self.__number_compare(day1.minute, day2.minute)
+        secondCompare = self.__number_compare(day1.second, day2.second)
+        compareList = [yearCompare, monthCompare, dayCompare, hourCompare, minuteCompare, secondCompare]
+
+        for i in range(0, granularity.value + 1):
+            if compareList[i] != 0:
+                return compareList[i]
+        return 0
+
+    def Connection_Test(self):
+        return True # TODO: Actually build out the test
+
     def Get_Repos(self):
         repoList = []
         if self.connectionType == ExternalRepoInterface.BITBUCKET:
             url = f"{self.baseURL}/repositories/{self.organization}"
-            repoListResponse = self.__genericRequest(url)['values']
+            repoListResponse = self.__genericRequest(url, noCredentials=True)['values']
             for repo in repoListResponse:
                 repoList.append(repo['name'])
         elif self.connectionType == ExternalRepoInterface.ADO:
@@ -120,7 +153,7 @@ class repoAdapter:
                     commitList.append((commit['commitId'], commitCommitterName, commitDate))
         elif self.connectionType == ExternalRepoInterface.BITBUCKET:
             url = f"{self.baseURL}/repositories/{self.organization}/{repo}/commits"
-            commitsResponse = self.__genericRequest(url)
+            commitsResponse = self.__genericRequest(url, noCredentials=True)
             for commit in commitsResponse['values']:
                 commitCommitterName = commit['author']['user']['display_name'].lower()
                 commitCommitterRaw = commit['author']['raw']
@@ -129,5 +162,7 @@ class repoAdapter:
                 if (not fromDate or commitDate > fromDate) and (not toDate or commitDate < toDate) and\
                 (not committerName or committerName == commitCommitterName) and (not committerEmail or commitCommitterEmail == committerEmail):
                     commitList.append((commit['hash'], commitCommitterName, commitDate))
+
+        commitList = commitList[::-1]
 
         return commitList

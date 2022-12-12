@@ -1,6 +1,6 @@
 import customtkinter
 from workitemAdapter import ExternalWorkitemInterface, WorkitemAdapter
-from repoAdapter import ExternalRepoInterface
+from repoAdapter import ExternalRepoInterface, RepoAdapter
 import os
 from PIL import Image, ImageTk
 from graphGenerator import GraphGenerator
@@ -15,21 +15,27 @@ class desktopApplication:
         self.app.title('Metrics Manager')
 
         self.workitemAdapter = None
-        self.graphGenerator = None
+        self.repoAdapter = None
+        self.graphGenerator = GraphGenerator(None, None)
 
         self.usernameEntry = None
         self.passwordEntry = None
         self.organizationEntry = None
         self.projectEntry = None
+        self.workitemConfigured = False
+        self.repoConfigured = False
 
         self.frame = None
         self.workitemConfigFrame = None
+        self.repoConfigFrame = None
         self.externalWorkitemInterface = ExternalWorkitemInterface.JIRA
         self.externalRepoInterface = ExternalRepoInterface.BITBUCKET
         self.externalworkitemListBox = None
         self.externalRepoListBox = None
-        self.testStatusLabel = None
+        self.featureTestStatusLabel = None
+        self.repoTestStatusLabel = None
         self.featureSelectButton = None
+        self.repoSelectButton = None
         self.featureImageList = []
     
     def Get_External_Workitem_Interface(self) -> ExternalWorkitemInterface:
@@ -43,31 +49,119 @@ class desktopApplication:
         elif externalInterface.lower() == "workday":
             self.externalWorkitemInterface = ExternalWorkitemInterface.WORKDAY
 
+        self.Show_Workitem_Config_Frame()
+
     def __Set_External_Repo_Interface(self, externalInterface: str):
         if externalInterface.lower() == "bitbucket":
             self.externalRepoInterface = ExternalRepoInterface.BITBUCKET
         elif externalInterface.lower() == "ado":
             self.externalRepoInterface = ExternalRepoInterface.ADO
-        elif externalInterface.lower() == "git":
-            self.externalRepoInterface = ExternalRepoInterface.GIT
+        elif externalInterface.lower() == "github":
+            self.externalRepoInterface = ExternalRepoInterface.GITHUB
 
-    def __Gather_And_Remove_Config(self):
-        try:
-            self.workitemAdapter = WorkitemAdapter(self.externalWorkitemInterface, self.usernameEntry.get(), self.passwordEntry.get(), self.organizationEntry.get(), self.projectEntry.get() if self.projectEntry else None)
-            testPass = self.workitemAdapter.connection_test()
-            self.graphGenerator = GraphGenerator(self.workitemAdapter)
-        except Exception as e:
-            testPass = False
+        self.Show_Repo_Config_Frame()
+
+    def __Gather_And_Remove_Config(self, workitemFrame = None, repoFrame = None):
+        if workitemFrame:
+            try:
+                self.workitemAdapter = WorkitemAdapter(self.externalWorkitemInterface, self.usernameEntry.get(), self.passwordEntry.get(), self.organizationEntry.get(), self.projectEntry.get() if self.projectEntry else None)
+                testPass = self.workitemAdapter.connection_test()
+                self.graphGenerator.Set_Workitem_Adapter(self.workitemAdapter)
+            except Exception as e:
+                testPass = False
+        elif repoFrame:
+            try:
+                self.repoAdapter = RepoAdapter(self.externalRepoInterface, self.usernameEntry.get(), self.passwordEntry.get(), self.organizationEntry.get(), self.projectEntry.get() if self.projectEntry else None)
+                testPass = self.repoAdapter.Connection_Test()
+                self.graphGenerator.Set_Repo_Adapter(self.repoAdapter)
+            except Exception as e:
+                testPass = False
+
+        if testPass and workitemFrame and not self.workitemConfigured:
+            self.workitemConfigured = True
+        if testPass and repoFrame and not self.repoConfigured:
+            self.repoConfigured = True
 
         if testPass:
-            self.testStatusLabel.configure(text_color="green")
-            self.testStatusLabel.configure(text="Connected")
-            self.featureSelectButton.configure(state="normal", fg_color=("#608BD5","#395E96"))
-        else:
-            self.testStatusLabel.configure(text_color="red")
-            self.testStatusLabel.configure(text="Failed Connection")
+            if self.workitemConfigured:
+                self.featureTestStatusLabel.configure(text_color="green")
+                self.featureTestStatusLabel.configure(text="Connected")
+                self.featureSelectButton.configure(state="normal", fg_color=("#608BD5","#395E96"))
+            elif self.repoConfigured:
+                self.repoTestStatusLabel.configure(text_color="green")
+                self.repoTestStatusLabel.configure(text="Connected")
+                self.repoSelectButton.configure(state="normal", fg_color=("#608BD5","#395E96"))
 
-        self.workitemConfigFrame.grid_remove()
+        else:
+            if workitemFrame:
+                self.featureTestStatusLabel.configure(text_color="red")
+                self.featureTestStatusLabel.configure(text="Failed Connection")
+            elif repoFrame:
+                self.repoTestStatusLabel.configure(text_color="red")
+                self.repoTestStatusLabel.configure(text="Failed Connection")
+
+
+        workitemFrame.grid_remove() if workitemFrame else repoFrame.grid_remove()
+
+    def Show_Repo_Config_Frame(self):
+        self.repoConfigFrame = customtkinter.CTkFrame(master=self.app)
+        self.repoConfigFrame.grid()
+        defaultUsername = None
+        defaultPassword = None
+        defaultOrg = None
+        defaultProject = None
+
+        if self.externalRepoInterface == ExternalRepoInterface.ADO:
+            defaultUsername = os.getenv("ado_username")
+            defaultPassword = os.getenv("ado_PAT")
+            defaultOrg = os.getenv("ado_org")
+            defaultProject = os.getenv("ado_project")
+        elif self.externalRepoInterface == ExternalRepoInterface.BITBUCKET:
+            defaultUsername = os.getenv("bitbucket_username") if os.getenv("bitbucket_username") else os.getenv("jira_username")
+            defaultPassword = os.getenv("bitbucket_PAT") if os.getenv("bitbucket_PAT") else os.getenv("jira_PAT")
+            defaultOrg = os.getenv("bitbucket_org") if os.getenv("bitbucket_org") else os.getenv("jira_org")
+            defaultProject = os.getenv("bitbucket_project") if os.getenv("bitbucket_project") else os.getenv("jira_project")
+        elif self.externalRepoInterface == ExternalRepoInterface.GITHUB:
+            defaultUsername = os.getenv("github_username")
+            defaultPassword = os.getenv("github_PAT")
+            defaultOrg = os.getenv("github_org")
+            defaultProject = os.getenv("github_project")
+
+        usernameLabel = customtkinter.CTkLabel(master=self.repoConfigFrame, text='Username', padx=15, pady=20)
+        self.usernameEntry = customtkinter.CTkEntry(master=self.repoConfigFrame, placeholder_text=f'{self.externalWorkitemInterface.name} username')
+        if defaultUsername:
+            self.usernameEntry.insert(0, defaultUsername)
+
+        passwordLabel = customtkinter.CTkLabel(master=self.repoConfigFrame, text='Password', padx=15, pady=20)
+        self.passwordEntry = customtkinter.CTkEntry(master=self.repoConfigFrame, placeholder_text=f'{self.externalWorkitemInterface.name} password', show="*")
+        if defaultPassword:
+            self.passwordEntry.insert(0, defaultPassword)
+
+        organizationLabel = customtkinter.CTkLabel(master=self.repoConfigFrame, text='Orgranization', padx=15, pady=20)
+        self.organizationEntry = customtkinter.CTkEntry(master=self.repoConfigFrame)
+        if defaultOrg:
+            self.organizationEntry.insert(0, defaultOrg)
+
+        if self.externalWorkitemInterface == ExternalWorkitemInterface.ADO:
+            projectLabel = customtkinter.CTkLabel(master=self.repoConfigFrame, text='Project', padx=15, pady=20)
+            self.projectEntry = customtkinter.CTkEntry(master=self.repoConfigFrame)
+            if defaultProject:
+                self.projectEntry.insert(0, defaultProject)
+                
+        submitButton = customtkinter.CTkButton(master=self.repoConfigFrame, text='Submit', command=lambda:[self.__Gather_And_Remove_Config(repoFrame=self.repoConfigFrame)], padx=15, pady=20)
+
+        usernameLabel.grid(row=0, column=0)
+        self.usernameEntry.grid(row=0, column=1)
+        passwordLabel.grid(row=1, column=0)
+        self.passwordEntry.grid(row=1, column=1)
+        organizationLabel.grid(row=2, column=0)
+        self.organizationEntry.grid(row=2, column=1)
+        if self.externalWorkitemInterface == ExternalWorkitemInterface.ADO:
+            projectLabel.grid(row=3, column=0)
+            self.projectEntry.grid(row=3, column=1)
+            submitButton.grid(row=4, column=0)
+        else:
+            submitButton.grid(row=3, column=0)
 
     def Show_Workitem_Config_Frame(self):
         self.workitemConfigFrame = customtkinter.CTkFrame(master=self.app)
@@ -109,7 +203,7 @@ class desktopApplication:
             if defaultProject:
                 self.projectEntry.insert(0, defaultProject)
                 
-        submitButton = customtkinter.CTkButton(master=self.workitemConfigFrame, text='Submit', command=lambda:[self.__Gather_And_Remove_Config()], padx=15, pady=20)
+        submitButton = customtkinter.CTkButton(master=self.workitemConfigFrame, text='Submit', command=lambda:[self.__Gather_And_Remove_Config(workitemFrame=self.workitemConfigFrame)], padx=15, pady=20)
 
         usernameLabel.grid(row=0, column=0)
         self.usernameEntry.grid(row=0, column=1)
@@ -123,6 +217,40 @@ class desktopApplication:
             submitButton.grid(row=4, column=0)
         else:
             submitButton.grid(row=3, column=0)
+
+    def Show_Repo_Frame(self):
+        self.frame.grid_remove()
+        self.frame = customtkinter.CTkFrame(master=self.app, width=1200)
+
+        repoLabel = customtkinter.CTkLabel(master=self.frame, text="Repo", padx=15, pady=20)
+        repoDropbox = customtkinter.CTkOptionMenu(master=self.frame, values=self.repoAdapter.Get_Repos())
+        fromDateLabel = customtkinter.CTkLabel(master=self.frame, text="From", padx=15, pady=20)
+        fromDateEntry = customtkinter.CTkEntry(master=self.frame, placeholder_text="01/01/2020")
+        toDateLabel = customtkinter.CTkLabel(master=self.frame, text="To", padx=15, pady=20)
+        toDateEntry = customtkinter.CTkEntry(master=self.frame, placeholder_text="01/01/2020")
+        repoImage = customtkinter.CTkButton(master=self.frame, text="Repo Metrics Chart", width=900, fg_color=('gray92', 'gray16'), pady=20)
+        commitsButton = customtkinter.CTkButton(
+            master=self.frame, text="Commits",
+            command=lambda:[
+                self.graphGenerator.Generate_Commit_Bar_Graph(
+                    repo=repoDropbox.get(),
+                    fromDate=self.repoAdapter.Str_To_Datetime(fromDateEntry.get()) if len(fromDateEntry.get()) > 0 else None,
+                    toDate=self.repoAdapter.Str_To_Datetime(toDateEntry.get()) if len(toDateEntry.get()) > 0 else None
+                ), self.Update_Commit_Image(repoImage)
+            ],
+            pady=20, padx=15
+        )
+
+        commitsButton.grid(row=0, column=0)
+        repoLabel.grid(row=1, column=0)
+        repoDropbox.grid(row=2, column=0)
+        fromDateLabel.grid(row=1, column=1)
+        fromDateEntry.grid(row=2, column=1)
+        toDateLabel.grid(row=1, column=2)
+        toDateEntry.grid(row=2, column=2)
+        repoImage.grid(row=3, column=0, columnspan=4)
+
+        self.frame.grid()
 
     def Show_Feature_Frame(self):
         self.frame.grid_remove()
@@ -201,6 +329,14 @@ class desktopApplication:
         imageButton.configure(image=self.featureImageList[-1], text="")
         imageButton.image = self.featureImageList[-1]
 
+    def Update_Commit_Image(self, imageButton: customtkinter.CTkButton):
+        commitBaseImage = Image.open("repo_commits.jpg")
+        commitBaseImage = commitBaseImage.resize((1200,700))
+        commitImage = ImageTk.PhotoImage(commitBaseImage, master=self.frame)
+        self.featureImageList.append(commitImage)
+        imageButton.configure(image=self.featureImageList[-1], text="")
+        imageButton.image = self.featureImageList[-1]
+
     def Show_Config_Frame(self) -> None:
         if self.frame:
             self.frame.grid_remove()
@@ -217,18 +353,20 @@ class desktopApplication:
         # TODO: Preset with current value
         externalWorkitemLabel = customtkinter.CTkLabel(master=self.frame, text='External Work Item Source', padx=15, pady=20)
         externalRepoLabel = customtkinter.CTkLabel(master=self.frame, text='External Repo Source', padx=15, pady=20)
-        self.testStatusLabel = customtkinter.CTkLabel(master=self.frame, text='', text_color="green")
-        configureButton = customtkinter.CTkButton(master=self.frame, text='Configure', command=self.Show_Workitem_Config_Frame, padx=15, pady=20)
+        self.featureTestStatusLabel = customtkinter.CTkLabel(master=self.frame, text='', text_color="green")
+        self.repoTestStatusLabel = customtkinter.CTkLabel(master=self.frame, text='', text_color="green")
 
         self.featureSelectButton = customtkinter.CTkButton(master=self.frame, text='Feature Metrics', command=self.Show_Feature_Frame, padx=15, pady=20, state="disabled", fg_color="gray")
+        self.repoSelectButton = customtkinter.CTkButton(master=self.frame, text='Repo Metrics', command=self.Show_Repo_Frame, padx=15, pady=20, state="disabled", fg_color="gray")
 
         externalWorkitemLabel.grid(row=0,column=0)
         externalWorkitemDropdown.grid(row=0,column=1)
-        self.testStatusLabel.grid(row=0, column=2)
+        self.featureTestStatusLabel.grid(row=0, column=2)
         externalRepoLabel.grid(row=1,column=0)
         externalRepoDropdown.grid(row=1,column=1)
-        configureButton.grid(row=2,column=1)
+        self.repoTestStatusLabel.grid(row=1, column=2)
         self.featureSelectButton.grid(row=0,column=3)
+        self.repoSelectButton.grid(row=1,column=3)
 
         # Start Program
         self.app.mainloop()
