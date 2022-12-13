@@ -2,6 +2,9 @@
 ## Scope:
 This tool is used quickly view heads up work tracking data (such as feature tracking, employee progress, etc) and abstract out the data source (ADO, Jira, etc).
 
+## Diagram:
+Find here: [diagram](./diagrams/class_diagram.drawio.png)
+
 ## Installation:
 1. Ensure python >= 3.9 is installed: [Pyhton installer](https://www.python.org/downloads/)
 2. Run 'py -m build'
