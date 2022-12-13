@@ -142,6 +142,14 @@ class desktopApplication:
         if defaultOrg:
             self.organizationEntry.insert(0, defaultOrg)
 
+        buttonRow = 3
+        if self.externalRepoInterface in [ExternalRepoInterface.ADO]:
+            buttonRow += 1
+            projectLabel = customtkinter.CTkLabel(master=self.repoConfigFrame, text="Project", padx=15, pady=20)
+            self.projectEntry = customtkinter.CTkEntry(master=self.repoConfigFrame)
+            if defaultProject:
+                self.projectEntry.insert(0, defaultProject)
+
         if self.externalWorkitemInterface == ExternalWorkitemInterface.ADO:
             projectLabel = customtkinter.CTkLabel(master=self.repoConfigFrame, text='Project', padx=15, pady=20)
             self.projectEntry = customtkinter.CTkEntry(master=self.repoConfigFrame)
@@ -156,12 +164,12 @@ class desktopApplication:
         self.passwordEntry.grid(row=1, column=1)
         organizationLabel.grid(row=2, column=0)
         self.organizationEntry.grid(row=2, column=1)
-        if self.externalWorkitemInterface == ExternalWorkitemInterface.ADO:
+        if self.externalRepoInterface in [ExternalRepoInterface.ADO]:
             projectLabel.grid(row=3, column=0)
             self.projectEntry.grid(row=3, column=1)
-            submitButton.grid(row=4, column=0)
+            submitButton.grid(row=buttonRow, column=0)
         else:
-            submitButton.grid(row=3, column=0)
+            submitButton.grid(row=buttonRow, column=0)
 
     def Show_Workitem_Config_Frame(self):
         self.workitemConfigFrame = customtkinter.CTkFrame(master=self.app)
@@ -348,7 +356,7 @@ class desktopApplication:
 
         externalWorkitemDropdown = customtkinter.CTkOptionMenu(master=self.frame, values=["Jira", "ADO"], command=self.__Set_External_Workitem_Interface)
         self.externalworkitemListBox = externalWorkitemDropdown
-        externalRepoDropdown = customtkinter.CTkOptionMenu(master=self.frame, values=["BitBucket", "ADO", "Git"], command=self.__Set_External_Repo_Interface)
+        externalRepoDropdown = customtkinter.CTkOptionMenu(master=self.frame, values=["BitBucket", "ADO", "GitHub "], command=self.__Set_External_Repo_Interface)
         self.externalRepoListBox = externalRepoDropdown
         # TODO: Preset with current value
         externalWorkitemLabel = customtkinter.CTkLabel(master=self.frame, text='External Work Item Source', padx=15, pady=20)
