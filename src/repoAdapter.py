@@ -2,6 +2,10 @@ from enum import Enum
 import requests
 import time
 from datetime import datetime
+from flask import Flask
+import os
+
+app = Flask(__name__)
 
 class ExternalRepoInterface(Enum):
     BITBUCKET = 0
@@ -166,3 +170,61 @@ class RepoAdapter:
         commitList = commitList[::-1]
 
         return commitList
+
+@app.route("/init")
+def route_init():
+    thisRepoAdapter = RepoAdapter(
+        ExternalRepoInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Base URL": thisRepoAdapter.baseURL,
+        "Credentials": thisRepoAdapter.credentials,
+        "Request Content Type": thisRepoAdapter.requestContentType
+    })
+
+@app.route("/test")
+def route_test():
+    thisRepoAdapter = RepoAdapter(
+        ExternalRepoInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Result": thisRepoAdapter.Connection_Test()
+    })
+
+@app.route("/repos")
+def route_getRepos():
+    thisRepoAdapter = RepoAdapter(
+        ExternalRepoInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisRepoAdapter.Get_Repos()
+    })
+
+@app.route("/repo/commits/<string:repoName>")
+def route_getRepoCommits(repoName):
+    print(repoName)
+    thisRepoAdapter = RepoAdapter(
+        ExternalRepoInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisRepoAdapter.Get_Repo_Commits(repo=repoName, fromDate=None, toDate=None, committerName=None, committerEmail=None)
+    })
+
+if __name__ == "__main__":
+    app.run()

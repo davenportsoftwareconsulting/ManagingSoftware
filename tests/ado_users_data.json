@@ -1,0 +1,89 @@
+{
+    "count": 3,
+    "value": [
+    {
+    "subjectKind": "user",
+    "domain": "Build",
+    "principalName": "9dcec5b1-1f5a-443c-b222-e6031f02b4e3",
+    "mailAddress": "",
+    "origin": "vsts",
+    "originId": "9e350c0f-27e6-4754-b74f-212e32fe5169",
+    "displayName": "Davenport software consulting Build Service (connordavenport92)",
+    "_links": {
+    "self": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Users/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw"
+    },
+    "memberships": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Memberships/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw"
+    },
+    "membershipState": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/MembershipStates/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw"
+    },
+    "storageKey": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/StorageKeys/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw"
+    },
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw"
+    }
+    },
+    "url": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Users/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw",
+    "descriptor": "svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjlkY2VjNWIxLTFmNWEtNDQzYy1iMjIyLWU2MDMxZjAyYjRlMw"
+    },
+    {
+    "subjectKind": "user",
+    "domain": "Build",
+    "principalName": "7af2a931-65f5-4c5d-a6dd-0dc49f4c0e99",
+    "mailAddress": "",
+    "origin": "vsts",
+    "originId": "7a5361c4-556b-40c7-812d-b51bd3c69622",
+    "displayName": "Project Collection Build Service (P7af2a931-65f5-4c5d-a6dd-0dc49f4c0e99)",
+    "_links": {
+    "self": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Users/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ"
+    },
+    "memberships": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Memberships/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ"
+    },
+    "membershipState": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/MembershipStates/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ"
+    },
+    "storageKey": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/StorageKeys/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ"
+    },
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ"
+    }
+    },
+    "url": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Users/svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ",
+    "descriptor": "svc.ZWFjZDBlYmMtZmM1Ni00NDkyLTkyNDQtNDdjMGU0MGJhMWFhOkJ1aWxkOjdhZjJhOTMxLTY1ZjUtNGM1ZC1hNmRkLTBkYzQ5ZjRjMGU5OQ"
+    },
+    {
+    "subjectKind": "user",
+    "domain": "Windows Live ID",
+    "principalName": "connor.davenport92@gmail.com",
+    "mailAddress": "connor.davenport92@gmail.com",
+    "origin": "msa",
+    "originId": "00037FFE18DADA9F",
+    "displayName": "Connor Davenport",
+    "_links": {
+    "self": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Users/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "memberships": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Memberships/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "membershipState": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/MembershipStates/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "storageKey": {
+    "href": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/StorageKeys/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    },
+    "avatar": {
+    "href": "https://dev.azure.com/connordavenport92/_apis/GraphProfile/MemberAvatars/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    },
+    "url": "https://vssps.dev.azure.com/connordavenport92/_apis/Graph/Users/msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5",
+    "descriptor": "msa.M2VmZjEzYTUtYmQzZC03ZDUyLTk3OTUtYzMxODk5MThlNTU5"
+    }
+    ]
+    }

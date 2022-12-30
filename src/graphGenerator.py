@@ -133,3 +133,47 @@ class GraphGenerator:
         plt.ylabel("Commits")
         plt.savefig(outputFileName)
         plt.close()
+
+    def Generate_Contribution_Bar_Chart(self, employee: str, fromDate: datetime, toDate: datetime, outputFileName: str = None):
+        outputFileName = "employee_contributions.jpg" if not outputFileName else outputFileName
+
+        if not toDate:
+            toDate = datetime.now()
+        
+        overallRepoCommits = []
+        x = []
+        numberOfCommitsList = []
+        repos = self.repoAdapter.Get_Repos()
+        repoFromDate = fromDate
+
+        for repo in repos:
+            for *_, repoCommitDate in self.repoAdapter.Get_Repo_Commits(repo, repoFromDate, toDate, employee):
+                overallRepoCommits.append(repoCommitDate)
+
+        overallRepoCommits.sort()
+
+        firstCommitDate = overallRepoCommits[0]
+        repoFromDate = overallRepoCommits[0] if not fromDate else fromDate
+
+        numOfDays = (toDate - repoFromDate).days + 1
+        for i in range(0,numOfDays):
+            indexDate = repoFromDate + timedelta(days=i)
+            x.append(indexDate.strftime("%m/%d"))
+            numberOfCommits = 0
+
+            for date in overallRepoCommits:
+                compareResult = self.repoAdapter.Compare_Dates(date, indexDate)
+                if compareResult == 0:
+                    numberOfCommits += 1
+                elif compareResult == 1:
+                    break
+
+            numberOfCommitsList.append(numberOfCommits)
+
+        self.workitemAdapter.Get_Employee_Contributions(employee, fromDate=fromDate, toDate=toDate)
+
+        plt.bar(x, numberOfCommitsList, width=.8, bottom = 0)
+        plt.title(f"{employee}: Commit Contribution")
+        plt.ylabel("Commits")
+        plt.savefig(outputFileName)
+        plt.close()

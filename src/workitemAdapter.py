@@ -2,6 +2,10 @@ from enum import Enum
 import requests
 import time
 from datetime import datetime, timedelta
+from flask import Flask
+import os
+
+app = Flask(__name__)
 
 class ExternalWorkitemInterface(Enum):
     JIRA = 0
@@ -54,7 +58,7 @@ class WorkitemAdapter:
         if testResponse:
             return True
         else:
-            return
+            return False
 
     def __str__(self) -> str:
         return f"Connection Type: {self.connectionType.name}\nConnection URL: {self.baseURL}"
@@ -257,6 +261,16 @@ class WorkitemAdapter:
         elif self.connectionType == ExternalWorkitemInterface.JIRA:
             return self.Str_To_Datetime(workitemFields['created'])
 
+    def Get_Workitem_History(self, workitemID: str):
+        if self.connectionType == ExternalWorkitemInterface.JIRA:
+            historyURL = f"{self.baseWorkitemURL}/{workitemID}?expand=changelog"
+            historyList = self.__genericRequest(historyURL)['changelog']['histories']
+        elif self.connectionType == ExternalWorkitemInterface.ADO:
+            historyURL = f"{self.baseWorkitemURL}/{workitemID}/updates"
+            historyList = self.__genericRequest(historyURL)['value']
+
+        return historyList
+
     def Get_Workitem_Field_History(self, workitemID: str, field: str, fromDate: datetime = None, toDate: datetime = None, embeddedReturn: list = None):
         if field not in self.fieldList:
             raise ValueError(f"Unable to find field: {field}")
@@ -272,9 +286,8 @@ class WorkitemAdapter:
 
         fieldChanges = []
         returnArray = []
+        historyList = self.Get_Workitem_History(workitemID)
         if self.connectionType == ExternalWorkitemInterface.JIRA:
-            historyURL = f"{self.baseWorkitemURL}/{workitemID}?expand=changelog"
-            historyList = self.__genericRequest(historyURL)['changelog']['histories']
             for historyItem in historyList:
                 if 'items' not in historyItem:
                     pass
@@ -295,8 +308,6 @@ class WorkitemAdapter:
             fieldChanges = fieldChanges[::-1]
 
         elif self.connectionType == ExternalWorkitemInterface.ADO:
-            historyURL = f"{self.baseWorkitemURL}/{workitemID}/updates"
-            historyList = self.__genericRequest(historyURL)['value']
             for historyItem in historyList:
                 if 'fields' not in historyItem:
                     continue
@@ -456,3 +467,353 @@ class WorkitemAdapter:
                 returnList.append((team['name'], team['id']))
                 
         return returnList
+
+    def Get_Employees(self):
+        returnList = []
+        if self.connectionType == ExternalWorkitemInterface.JIRA:
+            url = f"{self.baseURL}/2/users/search"
+            for user in self.__genericRequest(url):
+                if 'displayName' in user and 'emailAddress' in user and user['active']:
+                    returnList.append((user['displayName'], user['emailAddress']))
+
+        elif self.connectionType == ExternalWorkitemInterface.ADO:
+            url = f"https://vssps.dev.azure.com/{self.organization}/_apis/graph/users?api-version=7.0-preview.1" #TODO Currently works in Chrome and not in requests
+            for user in self.__genericRequest(url)['value']:
+                if 'displayName' in user and 'mailAddress' in user and user['domain'] not in ['Build']:
+                    returnList.append((user['displayName'], user['mailAddress']))
+                
+        return returnList
+
+    def Is_Workitem_ChangedBy(self, workitemID: str, employee: str, fromDate: datetime = None, toDate: datetime = None) -> bool:
+        employee = employee.strip()
+        returnList = []
+        if ' ' in employee:
+            employeeIdentifierType = "Name"
+        elif '@' in employee:
+            employeeIdentifierType = "Email"
+        else:
+            raise ValueError(f"{employee} must either be a name (contain a ' ') or be an email (contain an @)")
+
+        fromDate = datetime(year=1999, month=1, day=1) if not fromDate else fromDate
+        toDate = datetime.now() if not toDate else toDate
+
+        workitemHistory = self.Get_Workitem_History(workitemID)
+
+        if self.connectionType == ExternalWorkitemInterface.ADO:
+            for historyPoint in workitemHistory:
+                historyPointName = historyPoint['revisedBy']['displayName'].lower()
+                historyPointEmail = historyPoint['revisedBy']['uniqueName'].lower()
+                historyPointDate = historyPoint['fields']['System.ChangedDate']['newValue'] if 'fields' in historyPoint and 'System.ChangedDate' in historyPoint['fields'] else historyPoint['revisedDate']
+                historyPointDate = self.Str_To_Datetime(historyPointDate)
+
+                if historyPointDate > fromDate and historyPointDate < toDate and\
+                        ((employeeIdentifierType == "Name" and employee.lower() == historyPointName) or\
+                        (employeeIdentifierType == "Email" and employee.lower() == historyPointEmail)):
+                    returnList.append(historyPointDate)
+
+        elif self.connectionType == ExternalWorkitemInterface.JIRA:
+            for historyPoint in workitemHistory:
+                historyPointName = historyPoint['author']['displayName'].lower()
+                historyPointEmail = historyPoint['author']['emailAddress'].lower()
+                historyPointDate = historyPoint['created']
+                historyPointDate = self.Str_To_Datetime(historyPointDate)
+                
+                if historyPointDate > fromDate and historyPointDate < toDate and\
+                        ((employeeIdentifierType == "Name" and employee.lower() == historyPointName) or\
+                        (employeeIdentifierType == "Email" and employee.lower() == historyPointEmail)):
+                    returnList.append(historyPointDate)
+
+        return returnList
+
+    def Get_Employee_Contributions(self, employee: str, fromDate: datetime = None, toDate: datetime = None) -> list:
+        totalChangeList = []
+        if self.connectionType == ExternalWorkitemInterface.ADO:
+            queryData = {
+                            "query": "Select [System.Id], [System.Title] FROM workitems WHERE [System.WorkItemType] IN ('User Story','Bug','Issue')"
+                        }
+            workitemResponse = self.__genericPostRequest(f"{self.baseURL}/wit/wiql?api-version=7.1-preview.2", queryData) # TODO Test ADO part of this function
+            if 'workItems' not in workitemResponse:
+                return []
+
+            for workitem in workitemResponse['workItems']:
+                changeList = self.Is_Workitem_ChangedBy(workitemID=workitem['id'], employee=employee, fromDate=fromDate, toDate=toDate)
+                for changeDate in changeList:
+                    totalChangeList.append((workitem['id'], changeDate))
+
+        elif self.connectionType == ExternalWorkitemInterface.JIRA:
+            workitemResponse = self.__genericRequest(f"{self.baseURL}/latest/search?jql=issuetype in (Story,Subtask)")
+            for workitem in workitemResponse['issues']:
+                changeList = self.Is_Workitem_ChangedBy(workitemID=workitem['id'], employee=employee, fromDate=fromDate, toDate=toDate)
+                for changeDate in changeList:
+                    totalChangeList.append((workitem['id'], changeDate))
+
+        return totalChangeList
+
+@app.route("/init")
+def route_init():
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Base URL": thisWorkitemAdapter.baseURL,
+        "Credentials": thisWorkitemAdapter.credentials,
+        "Request Content Type": thisWorkitemAdapter.requestContentType
+    })
+
+@app.route("/test")
+def route_test():
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Result": thisWorkitemAdapter.connection_test()
+    })
+
+@app.route("/workitem/<string:workitemId>")
+def route_workitemResponse(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return(
+        thisWorkitemAdapter.Get_Workitem_Response(workitemID=workitemId)
+    )
+
+@app.route("/workitem/fields/<string:workitemId>")
+def route_workitemFields(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "fields": thisWorkitemAdapter.Get_Workitem_Fields(workitemID=workitemId)
+    })
+
+@app.route("/workitem/associations/<string:workitemId>")
+def route_workitemAssociations(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "fields": thisWorkitemAdapter.Get_Workitem_Associations(workitemID=workitemId)
+    })
+
+@app.route("/workitem/title/<string:workitemId>")
+def route_workitemTitle(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_Title(workitemID=workitemId)
+    })
+
+@app.route("/workitem/state/<string:workitemId>")
+def route_workitemState(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_State(workitemID=workitemId)
+    })
+
+@app.route("/workitem/description/<string:workitemId>")
+def route_workitemDescription(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_Description(workitemID=workitemId)
+    })
+    
+@app.route("/workitem/assignee/<string:workitemId>")
+def route_workitemAssignee(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_Assignee(workitemID=workitemId)
+    })
+
+@app.route("/workitem/created/<string:workitemId>")
+def route_workitemCreatedDate(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_Created_Date(workitemID=workitemId)
+    })
+
+@app.route("/workitem/history/<string:workitemId>")
+def route_workitemHistory(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_History(workitemID=workitemId)
+    })
+
+@app.route("/workitem/sprint/<string:workitemId>")
+def route_workitemSprint(workitemId):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_Sprint(workitemID=workitemId)
+    })
+
+@app.route("/workitem/history/<string:workitemId>/field/<string:field>")
+def route_workitemFeieldHistory(workitemId, field):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    zipped = thisWorkitemAdapter.Get_Workitem_Field_History(workitemID=workitemId, field=field, fromDate=None, toDate=None, embeddedReturn=None)
+    dateList, fieldList = zip(*zipped)
+    return({
+        "Dates": dateList,
+        "Values": fieldList,
+        "Combined": zipped
+    })
+
+@app.route("/workitem/<string:workitemId>/changedBy/<string:employee>")
+def route_workitemFeildHistory(workitemId, employee):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Is_Workitem_ChangedBy(workitemID=workitemId, employee=employee, fromDate=None, toDate=None)
+    })
+
+@app.route("/projects")
+def route_projects():
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Get_Projects()
+    })
+
+@app.route("/features")
+def route_features():
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Get_Features()
+    })
+
+@app.route("/sprints/<string:scope>")
+def route_sprints(scope):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Get_Sprints(inputScope=scope)
+    })
+
+@app.route("/boards")
+def route_boards():
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Get_Board_or_Teams()
+    })
+
+@app.route("/employees")
+def route_employees():
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Get_Employees()
+    })
+
+@app.route("/employee/<string:employee>")
+def route_employeeContributions(employee):
+    thisWorkitemAdapter = WorkitemAdapter(
+        ExternalWorkitemInterface.ADO,
+        os.getenv("ado_username"),
+        os.getenv("ado_pat"),
+        os.getenv("ado_org"),
+        os.getenv("ado_project")
+    )
+    return({
+        "Values": thisWorkitemAdapter.Get_Employee_Contributions(employee, fromDate=None, toDate=None)
+    })
+
+if __name__ == "__main__":
+    app.run()

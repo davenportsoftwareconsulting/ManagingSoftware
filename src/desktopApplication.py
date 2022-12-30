@@ -2,6 +2,7 @@ import customtkinter
 from workitemAdapter import ExternalWorkitemInterface, WorkitemAdapter
 from repoAdapter import ExternalRepoInterface, RepoAdapter
 import os
+import operator
 from PIL import Image, ImageTk
 from graphGenerator import GraphGenerator
 
@@ -36,6 +37,7 @@ class desktopApplication:
         self.repoTestStatusLabel = None
         self.featureSelectButton = None
         self.repoSelectButton = None
+        self.employeeSelectButton = None
         self.featureImageList = []
     
     def Get_External_Workitem_Interface(self) -> ExternalWorkitemInterface:
@@ -87,10 +89,12 @@ class desktopApplication:
                 self.featureTestStatusLabel.configure(text_color="green")
                 self.featureTestStatusLabel.configure(text="Connected")
                 self.featureSelectButton.configure(state="normal", fg_color=("#608BD5","#395E96"))
-            elif self.repoConfigured:
+            if self.repoConfigured:
                 self.repoTestStatusLabel.configure(text_color="green")
                 self.repoTestStatusLabel.configure(text="Connected")
                 self.repoSelectButton.configure(state="normal", fg_color=("#608BD5","#395E96"))
+            if self.workitemConfigured and self.repoConfigured:
+                self.employeeSelectButton.configure(state="normal", fg_color=("#608BD5","#395E96"))
 
         else:
             if workitemFrame:
@@ -244,7 +248,7 @@ class desktopApplication:
                     repo=repoDropbox.get(),
                     fromDate=self.repoAdapter.Str_To_Datetime(fromDateEntry.get()) if len(fromDateEntry.get()) > 0 else None,
                     toDate=self.repoAdapter.Str_To_Datetime(toDateEntry.get()) if len(toDateEntry.get()) > 0 else None
-                ), self.Update_Commit_Image(repoImage)
+                ), self.Update_Image(repoImage, "repo_commits.jpg")
             ],
             pady=20, padx=15
         )
@@ -289,7 +293,7 @@ class desktopApplication:
                     fromDate=self.workitemAdapter.Str_To_Datetime(fromDateEntry.get()) if len(fromDateEntry.get()) > 0 else None,
                     toDate=self.workitemAdapter.Str_To_Datetime(toDateEntry.get()) if len(toDateEntry.get()) > 0 else None
                 ),
-                self.Update_Feature_Image(featureProgressImage)
+                self.Update_Image(featureProgressImage, "current_feature_progress.jpg")
             ],
             pady=20, padx=15
         )
@@ -300,7 +304,7 @@ class desktopApplication:
                     workitemID=featureDropbox.get(),
                     sprintScope=boardTeamIdList[boardTeamNameList.index(boardTeamDropbox.get())]
                 ),
-                self.Update_Gantt_Image(featureProgressImage)
+                self.Update_Image(featureProgressImage, "feature_gantt.jpg")
             ],
             pady=20, padx=15
         )
@@ -321,24 +325,45 @@ class desktopApplication:
 
         self.frame.grid()
     
-    def Update_Feature_Image(self, imageButton: customtkinter.CTkButton):
-        featureBaseImage = Image.open("current_feature_progress.jpg")
-        featureBaseImage = featureBaseImage.resize((1200,700))
-        featureImage = ImageTk.PhotoImage(featureBaseImage, master=self.frame)
-        self.featureImageList.append(featureImage)
-        imageButton.configure(image=self.featureImageList[-1], text="")
-        imageButton.image = self.featureImageList[-1]
+    def Show_Employee_Frame(self):
+        self.frame.grid_remove()
+        self.frame = customtkinter.CTkFrame(master=self.app, width=1200)
 
-    def Update_Gantt_Image(self, imageButton: customtkinter.CTkButton):
-        ganttBaseImage = Image.open("feature_gantt.jpg")
-        ganttBaseImage = ganttBaseImage.resize((1200,700))
-        ganttImage = ImageTk.PhotoImage(ganttBaseImage, master=self.frame)
-        self.featureImageList.append(ganttImage)
-        imageButton.configure(image=self.featureImageList[-1], text="")
-        imageButton.image = self.featureImageList[-1]
+        employeeLabel = customtkinter.CTkLabel(master=self.frame, text="Employee", padx=15, pady=20)
+        employeeTupleList = self.workitemAdapter.Get_Employees()
+        employeeList = list(map(operator.itemgetter(0), employeeTupleList))
+        employeeDropbox = customtkinter.CTkOptionMenu(master=self.frame, values=employeeList)
+        fromDateLabel = customtkinter.CTkLabel(master=self.frame, text="From", padx=15, pady=20)
+        fromDateEntry = customtkinter.CTkEntry(master=self.frame, placeholder_text="01/01/2020")
+        toDateLabel = customtkinter.CTkLabel(master=self.frame, text="To", padx=15, pady=20)
+        toDateEntry = customtkinter.CTkEntry(master=self.frame, placeholder_text="01/01/2020")
+        employeeImage = customtkinter.CTkButton(master=self.frame, text="Employee Chart", width=900, fg_color=('gray92', 'gray16'), pady=20)
+        contributionsButton = customtkinter.CTkButton(
+            master=self.frame, text="Contributions",
+            command=lambda:[
+                self.graphGenerator.Generate_Contribution_Bar_Chart(
+                    employee=employeeDropbox.get(),
+                    fromDate=self.repoAdapter.Str_To_Datetime(fromDateEntry.get()) if len(fromDateEntry.get()) > 0 else None,
+                    toDate=self.repoAdapter.Str_To_Datetime(toDateEntry.get()) if len(toDateEntry.get()) > 0 else None
+                ),
+                self.Update_Image(employeeImage, "employee_contributions.jpg")
+            ],
+            pady=20, padx=15
+        )
 
-    def Update_Commit_Image(self, imageButton: customtkinter.CTkButton):
-        commitBaseImage = Image.open("repo_commits.jpg")
+        contributionsButton.grid(row=0, column=0)
+        employeeLabel.grid(row=1, column=0)
+        employeeDropbox.grid(row=2, column=0)
+        fromDateLabel.grid(row=1, column=1)
+        fromDateEntry.grid(row=2, column=1)
+        toDateLabel.grid(row=1, column=2)
+        toDateEntry.grid(row=2, column=2)
+        employeeImage.grid(row=3, column=0, columnspan=4)
+
+        self.frame.grid()
+
+    def Update_Image(self, imageButton: customtkinter.CTkButton, fileName: str):
+        commitBaseImage = Image.open(f"{fileName}")
         commitBaseImage = commitBaseImage.resize((1200,700))
         commitImage = ImageTk.PhotoImage(commitBaseImage, master=self.frame)
         self.featureImageList.append(commitImage)
@@ -366,15 +391,17 @@ class desktopApplication:
 
         self.featureSelectButton = customtkinter.CTkButton(master=self.frame, text='Feature Metrics', command=self.Show_Feature_Frame, padx=15, pady=20, state="disabled", fg_color="gray")
         self.repoSelectButton = customtkinter.CTkButton(master=self.frame, text='Repo Metrics', command=self.Show_Repo_Frame, padx=15, pady=20, state="disabled", fg_color="gray")
+        self.employeeSelectButton = customtkinter.CTkButton(master=self.frame, text='Employee Metrics', command=self.Show_Employee_Frame, padx=15, pady=20, state="disabled", fg_color="gray")
 
-        externalWorkitemLabel.grid(row=0,column=0)
-        externalWorkitemDropdown.grid(row=0,column=1)
+        externalWorkitemLabel.grid(row=0, column=0)
+        externalWorkitemDropdown.grid(row=0, column=1)
         self.featureTestStatusLabel.grid(row=0, column=2)
-        externalRepoLabel.grid(row=1,column=0)
-        externalRepoDropdown.grid(row=1,column=1)
+        externalRepoLabel.grid(row=1, column=0)
+        externalRepoDropdown.grid(row=1, column=1)
         self.repoTestStatusLabel.grid(row=1, column=2)
-        self.featureSelectButton.grid(row=0,column=3)
-        self.repoSelectButton.grid(row=1,column=3)
+        self.featureSelectButton.grid(row=0, column=3)
+        self.repoSelectButton.grid(row=1, column=3)
+        self.employeeSelectButton.grid(row=2, column=3)
 
         # Start Program
         self.app.mainloop()
