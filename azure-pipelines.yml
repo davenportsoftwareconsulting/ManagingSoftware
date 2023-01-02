@@ -26,3 +26,27 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool: 'Default'
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: |
+          $(tag)
+    - task: CmdLine@2
+      displayName: Alias registry1.io
+      inputs:
+        script: docker login -u cdavenport92 -p wyR8!hJkuF9B5wa docker.io
+    - task: CmdLine@2
+      displayName: Alias registry1.io
+      inputs:
+        script: docker push workitemadapter-app:latest
