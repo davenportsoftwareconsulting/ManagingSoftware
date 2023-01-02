@@ -1,13 +1,16 @@
-FROM ubuntu:22.04.1
+FROM python:3.8-slim-buster
 
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev
 
-COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
-
-RUN pip install -r requirements.txt
 
 COPY . /app
 
-CMD ["python3", "repoAdapter.py"]
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+ENTRYPOINT [ "python3" ]
+
+CMD ["./src/workitemAdapter.py"]
