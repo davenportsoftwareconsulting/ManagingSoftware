@@ -20,14 +20,17 @@ stages:
     pool: 'Default'
     steps:
     - task: Docker@2
-      displayName: Login to Docker Hub
-      inputs:
-        command: login
-    - task: Docker@2
       displayName: Build an image
       inputs:
-        command: buildAndPush
+        command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        repository: workitemadapter-app
         tags: |
           $(tag)
+    - task: CmdLine@2
+      displayName: Alias registry1.io
+      inputs:
+        script: docker login -u cdavenport92 -p Thekeeper11!@ docker.io
+    - task: CmdLine@2
+      displayName: Alias registry1.io
+      inputs:
+        script: docker push cdavenport92/workitemadapter-app:latest
