@@ -33,4 +33,4 @@ stages:
     - task: CmdLine@2
       displayName: Alias registry1.io
       inputs:
-        script: docker push cdavenport92/workitemadapter-app:latest
+        script: docker push workitemadapter-app:latest
