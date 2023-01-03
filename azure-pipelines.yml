@@ -23,6 +23,7 @@ stages:
       inputs:
         scriptSource: 'inline'
         script: 'python -m unittest tests/test_workitemAdapter.py'
+        pythonInterpreter: 'C:\Users\conno\AppData\Local\Programs\Python\Python310\python.exe'
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
