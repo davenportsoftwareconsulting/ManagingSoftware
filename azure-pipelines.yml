@@ -29,7 +29,7 @@ stages:
     - task: CmdLine@2
       displayName: Alias registry1.io
       inputs:
-        script: docker login -u $(dockerUsername) -p $(dockerPass) docker.io
+        script: docker login -u ${{variables.dockerUser}} -p ${{variables.dockerPass}} docker.io
     - task: CmdLine@2
       displayName: Alias registry1.io
       inputs:
