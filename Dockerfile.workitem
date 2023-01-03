@@ -13,4 +13,4 @@ EXPOSE 5002
 
 ENTRYPOINT [ "python3" ]
 
-CMD ["../workitemAdapter.py"]
+CMD ["src/workitemAdapter.py"]

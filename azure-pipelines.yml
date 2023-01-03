@@ -24,10 +24,10 @@ stages:
         containerRegistry: 'dockerServiceConnection'
         repository: 'cdavenport92/workitemadapter-app'
         command: 'buildAndPush'
-        Dockerfile: '**/src/workitem/Dockerfile'
+        Dockerfile: '**/Dockerfile.workitem'
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
         repository: 'cdavenport92/repoadapter-app'
         command: 'buildAndPush'
-        Dockerfile: '**/src/repo/Dockerfile'
+        Dockerfile: '**/Dockerfile.repo'
