@@ -13,4 +13,4 @@ EXPOSE 5001
 
 ENTRYPOINT [ "python3" ]
 
-CMD ["./src/repoAdapter.py"]
+CMD ["../repoAdapter.py"]
