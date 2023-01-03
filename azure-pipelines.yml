@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  - group: valueGroup
 
 stages:
 - stage: Build
@@ -25,11 +25,11 @@ stages:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          $(tag)
+          '$(Build.BuildId)'
     - task: CmdLine@2
       displayName: Alias registry1.io
       inputs:
-        script: docker login -u ${{valueGroup.dockerUser}} -p ${{valueGroup.dockerPass}} docker.io
+        script: docker login -u $(dockerUser) -p $(dockerPass) docker.io
     - task: CmdLine@2
       displayName: Alias registry1.io
       inputs:
