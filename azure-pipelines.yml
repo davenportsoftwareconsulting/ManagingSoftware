@@ -22,7 +22,7 @@ stages:
     - task: PythonScript@0
       inputs:
         scriptSource: 'inline'
-        script: 'py -m unittest tests/test_workitemAdapter.py'
+        script: 'python -m unittest tests/test_workitemAdapter.py'
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
