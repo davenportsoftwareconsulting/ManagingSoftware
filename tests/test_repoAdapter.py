@@ -27,9 +27,10 @@ class TestRepoAdapter(unittest.TestCase):
         self.repoAdapters['BITBUCKET'] = {
             'Adapter': bitbucketAdapter
         }
-        with open("bitbucket_repos_data.json", 'r') as jsonFile:
+        basePath = os.getcwd() if 'tests' in os.getcwd() else f"{os.getcwd()}\\tests"
+        with open(f"{basePath}\\bitbucket_repos_data.json", 'r') as jsonFile:
             self.repoAdapters['BITBUCKET']['Repo List Mock'] = json.loads(jsonFile.read())
-        with open("bitbucket_repo_commits_data.json", 'r') as jsonFile:
+        with open(f"{basePath}\\bitbucket_repo_commits_data.json", 'r') as jsonFile:
             self.repoAdapters['BITBUCKET']['Repo Commits Mock'] = json.loads(jsonFile.read())
         
         githubAdapter = RepoAdapter(
@@ -40,9 +41,9 @@ class TestRepoAdapter(unittest.TestCase):
         self.repoAdapters['GITHUB'] = {
             'Adapter': githubAdapter
         }
-        with open("github_repos_data.json", 'r') as jsonFile:
+        with open(f"{basePath}\\github_repos_data.json", 'r') as jsonFile:
             self.repoAdapters['GITHUB']['Repo List Mock'] = json.loads(jsonFile.read())
-        with open("github_repo_commits_data.json", 'r') as jsonFile:
+        with open(f"{basePath}\\github_repo_commits_data.json", 'r') as jsonFile:
             self.repoAdapters['GITHUB']['Repo Commits Mock'] = json.loads(jsonFile.read())
         
         adoAdapter = RepoAdapter(
@@ -53,9 +54,9 @@ class TestRepoAdapter(unittest.TestCase):
         self.repoAdapters['ADO'] = {
             'Adapter': adoAdapter
         }
-        with open("ado_repos_data.json", 'r') as jsonFile:
+        with open(f"{basePath}\\ado_repos_data.json", 'r') as jsonFile:
             self.repoAdapters['ADO']['Repo List Mock'] = json.loads(jsonFile.read())
-        with open("ado_repo_commits_data.json", 'r') as jsonFile:
+        with open(f"{basePath}\\ado_repo_commits_data.json", 'r') as jsonFile:
             self.repoAdapters['ADO']['Repo Commits Mock'] = json.loads(jsonFile.read())
 
     def test_Get_Repos(self):

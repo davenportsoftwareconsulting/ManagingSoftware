@@ -20,25 +20,26 @@ class TestWorkitemAdapter(unittest.TestCase):
     def setUp(self) -> None:
         self.workitemAdapters = {}
         self.currentMockData = None
+        basePath = os.getcwd() if 'tests' in os.getcwd() else f"{os.getcwd()}\\tests"
 
         try:
             jiraWorkitemAdapter = WorkitemAdapter(
                 connectionType=ExternalWorkitemInterface.JIRA, username=os.getenv('jira_username'),
                 password=os.getenv('jira_PAT'), organization=os.getenv('jira_org')
             )
-            with open('jira_workitem_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_workitem_data.json', 'r') as jsonFile:
                 jiraMockData = json.loads(jsonFile.read())
-            with open('jira_relation_workitem_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_relation_workitem_data.json', 'r') as jsonFile:
                 jiraRelationMockData = json.loads(jsonFile.read())
-            with open('jira_history_workitem_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_history_workitem_data.json', 'r') as jsonFile:
                 jiraHistoryMockData = json.loads(jsonFile.read())
-            with open('jira_project_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_project_data.json', 'r') as jsonFile:
                 jiraProjectMockData = json.loads(jsonFile.read())
-            with open('jira_feature_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_feature_data.json', 'r') as jsonFile:
                 jiraFeatureMockData = json.loads(jsonFile.read())
-            with open('jira_sprints_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_sprints_data.json', 'r') as jsonFile:
                 jiraSprintsMockData = json.loads(jsonFile.read())
-            with open('jira_boards_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\jira_boards_data.json', 'r') as jsonFile:
                 jiraBoardMockData = json.loads(jsonFile.read())
             self.workitemAdapters['JIRA'] = {
                 "Adapter": jiraWorkitemAdapter,
@@ -55,17 +56,17 @@ class TestWorkitemAdapter(unittest.TestCase):
                 connectionType=ExternalWorkitemInterface.ADO, username=os.getenv('ado_username'),
                 password=os.getenv('ado_PAT'), organization=os.getenv('ado_org'), project=os.getenv('ado_project')
             )
-            with open('ado_workitem_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\ado_workitem_data.json', 'r') as jsonFile:
                 adoMockData = json.loads(jsonFile.read())
-            with open('ado_relation_workitem_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\ado_relation_workitem_data.json', 'r') as jsonFile:
                 adoRelationMockData = json.loads(jsonFile.read())
-            with open('ado_history_workitem_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\ado_history_workitem_data.json', 'r') as jsonFile:
                 adoHistoryMockData = json.loads(jsonFile.read())
-            with open('ado_feature_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\ado_feature_data.json', 'r') as jsonFile:
                 adoFeatureMockData = json.loads(jsonFile.read())
-            with open('ado_sprints_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\ado_sprints_data.json', 'r') as jsonFile:
                 adoSprintsMockData = json.loads(jsonFile.read())
-            with open('ado_teams_data.json', 'r') as jsonFile:
+            with open(f'{basePath}\\ado_teams_data.json', 'r') as jsonFile:
                 adoTeamsMockData = json.loads(jsonFile.read())
             self.workitemAdapters["ADO"] = {
                 "Adapter": adoWorkitemAdapter,
