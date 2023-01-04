@@ -1,2 +1,2 @@
-py -m unittest tests\test_workitemAdapter.py
-py -m unittest tests\test_repoAdapter.py  
+%1\py -m unittest tests\test_workitemAdapter.py
+%1\py -m unittest tests\test_repoAdapter.py  
