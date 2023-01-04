@@ -22,7 +22,7 @@ stages:
     - task: BatchScript@1
       inputs:
         filename: ./tests/run_tests.cmd
-        arguments: '$(PythonPath)'
+        arguments: 'C:\Users\conno\AppData\Local\Programs\Python\Python310' # Need to replace with variable
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
