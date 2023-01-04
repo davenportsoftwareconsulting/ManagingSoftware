@@ -19,11 +19,9 @@ stages:
     displayName: Build
     pool: 'Default'
     steps:
-    - task: PythonScript@0
+    - task: BatchScript@1
       inputs:
-        scriptSource: 'inline'
-        script: 'py -m unittest tests/test_workitemAdapter.py'
-        pythonInterpreter: 'C:\Users\conno\AppData\Local\Programs\Python\Python310\python.exe'
+        filename: ./tests/run_tests.cmd
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
