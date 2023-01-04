@@ -22,7 +22,7 @@ stages:
     - task: BatchScript@1
       inputs:
         filename: ./tests/run_tests.cmd
-        arguments: '$(Agent.PythonPath)'
+        arguments: '$(PythonPath)'
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
