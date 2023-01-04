@@ -21,7 +21,8 @@ stages:
     steps:
     - task: BatchScript@1
       inputs:
-        filename: ./tests/run_tests.cmd $(PythonPath)
+        filename: ./tests/run_tests.cmd
+        arguments: $(AgentCapabilities.User.PythonPath)
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerServiceConnection'
