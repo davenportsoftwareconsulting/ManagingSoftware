@@ -38,4 +38,4 @@ stages:
         Dockerfile: '**/Dockerfile.repo'
     - task: CmdLine@2
       inputs:
-        script: 'docker system prune' 
+        script: 'docker image prune -f' 
