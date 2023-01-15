@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  workitem:
+    build:
+      context: .
+      dockerfile: Dockerfile.workitem
+    ports:
+      - "5001:5000"
+    image: workitemadapter
+    restart: unless-stopped
+
+  repo:
+    build:
+      context: .
+      dockerfile: Dockerfile.repo
+    ports:
+      - "5002:5000"
+    image: repoadapter
+    restart: unless-stopped
