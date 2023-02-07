@@ -2,10 +2,16 @@ from enum import Enum
 import requests
 import time
 from datetime import datetime, timedelta
-from flask import Flask
-import os
+from flask import Flask, request
+import argparse
+import json
 
 app = Flask(__name__)
+
+badRequestReturn = {
+    "Status": 400,
+    "Message": "Parameters passed cannot authenticate to work item tracking application"
+}
 
 class ExternalWorkitemInterface(Enum):
     JIRA = 0
@@ -38,7 +44,7 @@ class WorkitemAdapter:
             self.credentials = ('',self.password)
             self.requestContentType = "application/json-patch+json"
             self.postContentType = "application/json"
-            for fieldEntry in self.__genericRequest(f"{self.baseURL}/wit/fields")['value']:
+            for fieldEntry in self.__genericRequest(f"{self.testURL}")['value']:
                 self.fieldList.append(fieldEntry['referenceName'])
                 self.fieldDataList.append(fieldEntry)
 
@@ -549,271 +555,253 @@ class WorkitemAdapter:
 
         return totalChangeList
 
-@app.route("/init")
+def initialize(request) -> WorkitemAdapter:
+    requestData = request.data
+    if not len(requestData) == 0:
+        requestData = json.loads(request.data.decode())
+    else:
+        requestData = request.form
+    try:
+        adapter = WorkitemAdapter(
+            ExternalWorkitemInterface.ADO,
+            requestData['username'],
+            requestData['pat'],
+            requestData['org'],
+            requestData['project']
+        )
+    except:
+        adapter = None
+    return adapter
+
+@app.route("/init", methods=['GET'])
 def route_init():
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
         "Base URL": thisWorkitemAdapter.baseURL,
         "Credentials": thisWorkitemAdapter.credentials,
-        "Request Content Type": thisWorkitemAdapter.requestContentType
+        "Request Content Type": thisWorkitemAdapter.requestContentType,
+        "Status": 200
     })
 
-@app.route("/test")
+@app.route("/test", methods=['GET'])
 def route_test():
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Result": thisWorkitemAdapter.connection_test()
+        "Result": thisWorkitemAdapter.connection_test(),
+        "Status": 200
     })
 
-@app.route("/workitem/<string:workitemId>")
+@app.route("/workitem/<string:workitemId>", methods=['GET'])
 def route_workitemResponse(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
-    return(
-        thisWorkitemAdapter.Get_Workitem_Response(workitemID=workitemId)
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
 
-@app.route("/workitem/fields/<string:workitemId>")
+    return({
+        "Value": thisWorkitemAdapter.Get_Workitem_Response(workitemID=workitemId),
+        "Status": 200
+    })
+
+@app.route("/workitem/fields/<string:workitemId>", methods=['GET'])
 def route_workitemFields(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "fields": thisWorkitemAdapter.Get_Workitem_Fields(workitemID=workitemId)
+        "fields": thisWorkitemAdapter.Get_Workitem_Fields(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/associations/<string:workitemId>")
+@app.route("/workitem/associations/<string:workitemId>", methods=['GET'])
 def route_workitemAssociations(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "fields": thisWorkitemAdapter.Get_Workitem_Associations(workitemID=workitemId)
+        "fields": thisWorkitemAdapter.Get_Workitem_Associations(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/title/<string:workitemId>")
+@app.route("/workitem/title/<string:workitemId>", methods=['GET'])
 def route_workitemTitle(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_Title(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_Title(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/state/<string:workitemId>")
+@app.route("/workitem/state/<string:workitemId>", methods=['GET'])
 def route_workitemState(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_State(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_State(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/description/<string:workitemId>")
+@app.route("/workitem/description/<string:workitemId>", methods=['GET'])
 def route_workitemDescription(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_Description(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_Description(workitemID=workitemId),
+        "Status": 200
     })
     
-@app.route("/workitem/assignee/<string:workitemId>")
+@app.route("/workitem/assignee/<string:workitemId>", methods=['GET'])
 def route_workitemAssignee(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_Assignee(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_Assignee(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/created/<string:workitemId>")
+@app.route("/workitem/created/<string:workitemId>", methods=['GET'])
 def route_workitemCreatedDate(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_Created_Date(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_Created_Date(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/history/<string:workitemId>")
+@app.route("/workitem/history/<string:workitemId>", methods=['GET'])
 def route_workitemHistory(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_History(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_History(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/sprint/<string:workitemId>")
+@app.route("/workitem/sprint/<string:workitemId>", methods=['GET'])
 def route_workitemSprint(workitemId):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Value": thisWorkitemAdapter.Get_Workitem_Sprint(workitemID=workitemId)
+        "Value": thisWorkitemAdapter.Get_Workitem_Sprint(workitemID=workitemId),
+        "Status": 200
     })
 
-@app.route("/workitem/history/<string:workitemId>/field/<string:field>")
+@app.route("/workitem/history/<string:workitemId>/field/<string:field>", methods=['GET'])
 def route_workitemFeieldHistory(workitemId, field):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     zipped = thisWorkitemAdapter.Get_Workitem_Field_History(workitemID=workitemId, field=field, fromDate=None, toDate=None, embeddedReturn=None)
     dateList, fieldList = zip(*zipped)
     return({
         "Dates": dateList,
         "Values": fieldList,
-        "Combined": zipped
+        "Combined": zipped,
+        "Status": 200
     })
 
-@app.route("/workitem/<string:workitemId>/changedBy/<string:employee>")
+@app.route("/workitem/<string:workitemId>/changedBy/<string:employee>", methods=['GET'])
 def route_workitemFeildHistory(workitemId, employee):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Is_Workitem_ChangedBy(workitemID=workitemId, employee=employee, fromDate=None, toDate=None)
+        "Values": thisWorkitemAdapter.Is_Workitem_ChangedBy(workitemID=workitemId, employee=employee, fromDate=None, toDate=None),
+        "Status": 200
     })
 
-@app.route("/projects")
+@app.route("/projects", methods=['GET'])
 def route_projects():
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Get_Projects()
+        "Values": thisWorkitemAdapter.Get_Projects(),
+        "Status": 200
     })
 
-@app.route("/features")
+@app.route("/features", methods=['GET'])
 def route_features():
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Get_Features()
+        "Values": thisWorkitemAdapter.Get_Features(),
+        "Status": 200
     })
 
-@app.route("/sprints/<string:scope>")
+@app.route("/sprints/<string:scope>", methods=['GET'])
 def route_sprints(scope):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Get_Sprints(inputScope=scope)
+        "Values": thisWorkitemAdapter.Get_Sprints(inputScope=scope),
+        "Status": 200
     })
 
-@app.route("/boards")
+@app.route("/boards", methods=['GET'])
 def route_boards():
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Get_Board_or_Teams()
+        "Values": thisWorkitemAdapter.Get_Board_or_Teams(),
+        "Status": 200
     })
 
-@app.route("/employees")
+@app.route("/employees", methods=['GET'])
 def route_employees():
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Get_Employees()
+        "Values": thisWorkitemAdapter.Get_Employees(),
+        "Status": 200
     })
 
-@app.route("/employee/<string:employee>")
+@app.route("/employee/<string:employee>", methods=['GET'])
 def route_employeeContributions(employee):
-    thisWorkitemAdapter = WorkitemAdapter(
-        ExternalWorkitemInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisWorkitemAdapter = initialize(request)
+    if not thisWorkitemAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisWorkitemAdapter.Get_Employee_Contributions(employee, fromDate=None, toDate=None)
+        "Values": thisWorkitemAdapter.Get_Employee_Contributions(employee, fromDate=None, toDate=None),
+        "Status": 200
     })
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", dest="userOpt_port", action="store", default="5002")
+    args = parser.parse_args()
+
+    app.run(host='0.0.0.0', port=int(args.userOpt_port))

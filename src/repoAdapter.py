@@ -2,10 +2,16 @@ from enum import Enum
 import requests
 import time
 from datetime import datetime
-from flask import Flask
-import os
+from flask import Flask, request
+import json
+import argparse
 
 app = Flask(__name__)
+
+badRequestReturn = {
+    "Status": 400,
+    "Message": "Parameters passed cannot authenticate to work item tracking application"
+}
 
 class ExternalRepoInterface(Enum):
     BITBUCKET = 0
@@ -171,60 +177,70 @@ class RepoAdapter:
 
         return commitList
 
-@app.route("/init")
-def route_init():
-    thisRepoAdapter = RepoAdapter(
+def initialize(request) -> RepoAdapter:
+    requestData = request.data
+    if not len(requestData) == 0:
+        requestData = json.loads(request.data.decode())
+    else:
+        requestData = request.form
+    return RepoAdapter(
         ExternalRepoInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
+        requestData['username'],
+        requestData['pat'],
+        requestData['org'],
+        requestData['project']
     )
+
+@app.route("/init", methods=['GET'])
+def route_init():
+    thisRepoAdapter = initialize(request)
+    if not thisRepoAdapter:
+        return(badRequestReturn)
+
     return({
         "Base URL": thisRepoAdapter.baseURL,
         "Credentials": thisRepoAdapter.credentials,
-        "Request Content Type": thisRepoAdapter.requestContentType
+        "Request Content Type": thisRepoAdapter.requestContentType,
+        "Status": 200
     })
 
-@app.route("/test")
+@app.route("/test", methods=['GET'])
 def route_test():
-    thisRepoAdapter = RepoAdapter(
-        ExternalRepoInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisRepoAdapter = initialize(request)
+    if not thisRepoAdapter:
+        return(badRequestReturn)
+
     return({
-        "Result": thisRepoAdapter.Connection_Test()
+        "Result": thisRepoAdapter.Connection_Test(),
+        "Status": 200
     })
 
-@app.route("/repos")
+@app.route("/repos", methods=['GET'])
 def route_getRepos():
-    thisRepoAdapter = RepoAdapter(
-        ExternalRepoInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisRepoAdapter = initialize(request)
+    if not thisRepoAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisRepoAdapter.Get_Repos()
+        "Values": thisRepoAdapter.Get_Repos(),
+        "Status": 200
     })
 
-@app.route("/repo/commits/<string:repoName>")
+@app.route("/repo/commits/<string:repoName>", methods=['GET'])
 def route_getRepoCommits(repoName):
     print(repoName)
-    thisRepoAdapter = RepoAdapter(
-        ExternalRepoInterface.ADO,
-        os.getenv("ado_username"),
-        os.getenv("ado_pat"),
-        os.getenv("ado_org"),
-        os.getenv("ado_project")
-    )
+    thisRepoAdapter = initialize(request)
+    if not thisRepoAdapter:
+        return(badRequestReturn)
+
     return({
-        "Values": thisRepoAdapter.Get_Repo_Commits(repo=repoName, fromDate=None, toDate=None, committerName=None, committerEmail=None)
+        "Values": thisRepoAdapter.Get_Repo_Commits(repo=repoName, fromDate=None, toDate=None, committerName=None, committerEmail=None),
+        "Status": 200
     })
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", dest="userOpt_port", action="store", default="5001")
+    args = parser.parse_args()
+    print(args.userOpt_port)
+    app.run(host='0.0.0.0', port=int(args.userOpt_port))

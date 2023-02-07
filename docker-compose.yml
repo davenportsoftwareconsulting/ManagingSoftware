@@ -5,16 +5,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.workitem
-    ports:
-      - "5001:5000"
     image: workitemadapter
     restart: unless-stopped
+    ports:
+      - 5002:5002
+    networks:
+      - internalNetwork
 
   repo:
     build:
       context: .
       dockerfile: Dockerfile.repo
-    ports:
-      - "5002:5000"
     image: repoadapter
     restart: unless-stopped
+    ports:
+      - 5001:5001
+    networks:
+      - internalNetwork
+
+networks:
+  internalNetwork:
+    driver: bridge
